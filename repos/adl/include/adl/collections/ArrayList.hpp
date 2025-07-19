@@ -89,8 +89,7 @@ public:
     }
 
 
-    ArrayList(const ArrayList<DataType>& other) {
-        this->allocator = other.allocator;
+    ArrayList(const ArrayList<DataType>& other) : allocator(other.allocator) {
         if (!this->resize(other.size())) {
             Genode::error("failed to copy arraylist!");
             return;
