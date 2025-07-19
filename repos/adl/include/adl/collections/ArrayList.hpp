@@ -39,10 +39,8 @@ protected:
     DataType* data;
 
 public:
-    ArrayListIterator(DataType* data, size_t size, size_t curr) {
-        this->size = size;
-        this->data = data;
-        this->curr = curr;
+    ArrayListIterator(DataType* data, size_t size, size_t curr) : size(size), curr(curr), data(data) {
+        // pass
     }
 
     DataType& operator * () const { return data[curr]; };
@@ -82,12 +80,12 @@ protected:
     Allocator* allocator;
 
 public:
-    ArrayList() {
-        this->allocator = &defaultAllocator;
+    ArrayList() : allocator(&defaultAllocator) {
+        // pass
     }
 
-    ArrayList(Allocator& allocator) {
-        this->allocator = &allocator;
+    ArrayList(Allocator& allocator) : allocator(&allocator) {
+        // pass
     }
 
 

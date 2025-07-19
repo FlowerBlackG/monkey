@@ -127,7 +127,7 @@ public:
 
     inline void init(InitParams x) { init(x.alloc, x.free, x.data); }
 
-    inline void operator = (InitParams x) { init(x); }
+    inline Allocator& operator = (InitParams x) { init(x); return *this; }
 
 };
 

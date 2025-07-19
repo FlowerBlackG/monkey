@@ -18,17 +18,13 @@ using namespace std;
 namespace adl {
 
 
-TString::TString(adl::Allocator* alloc)
+TString::TString(adl::Allocator* alloc) : allocator(alloc)
 {
-    this->allocator = alloc;
-    content = nullptr;
-    len = 0;
+    // pass
 }
 
-TString::TString(const char* str, adl::Allocator* alloc)
+TString::TString(const char* str, adl::Allocator* alloc) : allocator(alloc)
 {
-    this->allocator = alloc;
-
     if (str == nullptr || str[0] == '\0') {
         content = nullptr;
         len = 0;
@@ -63,9 +59,8 @@ TString::TString(const int x)
 }
 #endif
 
-TString::TString(const TString& str, adl::Allocator* alloc)
+TString::TString(const TString& str, adl::Allocator* alloc) : allocator(alloc)
 {
-    this->allocator = alloc;
 
     if (str.length() == 0) {
         content = nullptr;

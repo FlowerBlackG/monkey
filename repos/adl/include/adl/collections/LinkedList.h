@@ -30,7 +30,7 @@ class LinkedListIterator {
     typedef LinkedListNode ElementType;
 
 public:
-    LinkedListIterator(ElementType* node) { this->node = node;}
+    LinkedListIterator(ElementType* node) : node(node) {};
 
     ElementType& operator * () const { return *node; };
 

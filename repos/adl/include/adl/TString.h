@@ -14,8 +14,8 @@ template<typename T> class ArrayList;
 
 class TString {
 protected:
-    char* content;
-    size_t   len;
+    char* content = nullptr;
+    size_t len = 0;
     adl::Allocator* allocator = nullptr;
 
     inline void freeUpContent();
