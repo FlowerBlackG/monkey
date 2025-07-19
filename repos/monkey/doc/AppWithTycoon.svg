@@ -1,0 +1,152 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light dark;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="801px" height="201px" viewBox="-0.5 -0.5 801 201" content="&lt;mxfile&gt;&lt;diagram id=&quot;DC3JHE1MDOtbO_sm4xwj&quot; name=&quot;Page-1&quot;&gt;3ZlNb6MwEIZ/TY674iMJcGyTZvdSqVJXavdUuTAlVo2NjPO1v37HwUCIk22UskTpoQ0zeMB+5vXYcQb+JFv/kCSf34sE2MBzkvXAnw48zw38CD+0Z1N6IicsHamkiWnUOB7pHzBOx3gXNIGi1VAJwRTN285YcA6xavmIlGLVbvYmWPutOUnBcjzGhNneJ5qoeekNR07j/wk0nVdvdh1zJyNVY+Mo5iQRqx2XfzfwJ1IIVV5l6wkwDa/iUsbNjtytOyaBq1MCvDJgSdjCjO0mz9HxIEUMRWE6qTbVyKVY8AR0sDPwb98EVzOSUabzeE8fCS+M1+TMHaJNGE05GgzesE+3S5CKIssb41YiR6/pB96D9dGxuDUhlBaIDJTcYBMTEBqmRlTe0NirJkV1m/lueqpkECOLtH50Qw4vDLzDIIdHQMYo/k4pxkgD5AGOGU0S/YIuUEZ7KAMbZU1tF2XYAcmxRfLXJhaCXx9Fzz8T47ADjK5vcWRi9Y3BUhdjhOy7GpvIQRJFBbfnOiRY9IzJBddQYE3Vs2Zprn9r+N9HxpquTS62xqYyOPb8edcoo4ajym7itlYr8AEkxbHrXG2dhSJS3egarrPISFHQuHLPqKax7dx+3svB6RH9O5cIQCxkbFoFZm0hMoVK4YczLoEhxWX76Z9JX2BlD0uyErHQjSa4ru3k8ImimjxnKuL3658kvtvjJAktyveCv8OmpnmVC+HwlJUwOIDUc7ooPNH/qiQnzv1jBcf7qOCcVyQiu0i4o09WCRP6ICi+uM7reC+v/mgvXWUfTNRexupunJTEyJoY1V766grMMLpggXHDvpfV4COVnziLzpsMFdtOZ8PJsB1LtQXw5AtIdtSnZMc9S/aieq2ODy6iV9fWK+464AsU2X6/6gT9Kta9qGK9SyrWPi+SEC+vX69+1KNe68O/3jYFl90TjGzFHkvPJ3fIYdDbDrka1e75Cn2Nr28qjPeZHdgfH/qy2MVZn2evgBZAmm1P42/N55RmKT4WWeP/mNH8BTWKlylwkAQfPrtDx/wlZeIVXlwvXOPf95ynHaAKnY9RHTphPgMVms2vAKU8m99S/Lu/&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <g>
+            <rect x="0" y="0" width="280" height="120" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1.5" y="19.5">
+                    App Process
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="10" y="30" width="120" height="80" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="69.5" y="75.5">
+                    App code
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="150" y="30" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="209.5" y="55.5">
+                    Tycoon
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 276.37 90 L 393.63 90" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 271.12 90 L 278.12 86.5 L 276.37 90 L 278.12 93.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 398.88 90 L 391.88 93.5 L 393.63 90 L 391.88 86.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;Helvetica&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="302" y="74" width="67" height="35" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="334.5" y="87">
+                    low-level
+                </text>
+                <text x="334.5" y="104">
+                    operations
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="150" y="70" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="209.5" y="87">
+                    Protocol Conn
+                </text>
+                <text x="209.5" y="104">
+                    With Dock
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="400" y="0" width="270" height="200" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="401.5" y="19.5">
+                    Monkey Dock Process
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 536.37 90 L 583.63 90" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 531.12 90 L 538.12 86.5 L 536.37 90 L 538.12 93.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 588.88 90 L 581.88 93.5 L 583.63 90 L 581.88 86.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="410" y="70" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="469.5" y="95.5">
+                    connect
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 536.37 130 L 583.63 130" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 531.12 130 L 538.12 126.5 L 536.37 130 L 538.12 133.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 588.88 130 L 581.88 133.5 L 583.63 130 L 581.88 126.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="410" y="110" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="469.5" y="135.5">
+                    send
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 536.04 52.01 L 583.96 67.99" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 531.06 50.35 L 538.81 49.25 L 536.04 52.01 L 536.59 55.89 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 588.94 69.65 L 581.19 70.75 L 583.96 67.99 L 583.41 64.11 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="410" y="30" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="469.5" y="55.5">
+                    socket
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 536.04 167.99 L 583.96 152.01" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 531.06 169.65 L 536.59 164.11 L 536.04 167.99 L 538.81 170.75 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 588.94 150.35 L 583.41 155.89 L 583.96 152.01 L 581.19 149.25 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="410" y="150" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="469.5" y="175.5">
+                    recv
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 666.37 110 L 713.63 110" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 661.12 110 L 668.12 106.5 L 666.37 110 L 668.12 113.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 718.88 110 L 711.88 113.5 L 713.63 110 L 711.88 106.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="590" y="70" width="70" height="80" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="624.5" y="115.5">
+                    libc
+                </text>
+            </g>
+        </g>
+        <g>
+            <image x="719.5" y="69.5" width="80" height="80" xlink:href="data:image/png;base64,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"/>
+        </g>
+    </g>
+</svg>

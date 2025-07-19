@@ -1,0 +1,186 @@
+#
+# Monkey Concierge : Remembers where all nodes are.
+#
+# Created on 2025.1.6 at Minhang, Shanghai
+# 
+# 
+# gongty  [at] tongji [dot] edu [dot] cn
+# feng.yt [at]  sjtu  [dot] edu [dot] cn
+# 
+#
+
+
+#
+# Build
+#
+
+create_boot_directory
+
+import_from_depot [depot_user]/src/[base_src] \
+                  [depot_user]/pkg/[drivers_nic_pkg] \
+                  [depot_user]/src/init \
+                  [depot_user]/src/libc \
+                  [depot_user]/src/nic_router \
+                  [depot_user]/src/vfs \
+                  [depot_user]/src/vfs_lwip \
+                  [depot_user]/src/vfs_pipe
+
+
+build {
+    core init timer app/monkey_concierge
+}
+
+
+#
+# Generate config
+#
+
+install_config {
+
+<config verbose="yes" prio_levels="4">
+    <default-route>
+        <any-service> <parent/> <any-child/> </any-service>
+    </default-route>
+
+    <parent-provides>
+        <service name="LOG"/>
+        <service name="PD"/>
+        <service name="CPU"/>
+        <service name="ROM"/>
+        <service name="IRQ"/>
+		<service name="RM"/>
+		<service name="IO_MEM"/>
+        <service name="IO_PORT"/>
+    </parent-provides>
+
+    <default caps="200"/>
+
+
+    <start name="timer" priority="0">
+        
+        <resource name="RAM" quantum="2M"/>
+        <provides> <service name="Timer"/> </provides>
+    </start>
+
+
+    <start name="drivers" caps="1200" managing_system="yes" priority="0">
+        
+        <resource name="RAM" quantum="256M"/>
+        <binary name="init"/>
+        <route>
+            <service name="ROM" label="config"> <parent label="drivers.config"/> </service>
+            <service name="Timer"> <child name="timer"/> </service>
+            <service name="Uplink"> <child name="nic_router"/> </service>
+            <any-service> <parent/> </any-service>
+        </route>
+    </start>
+
+    <start name="nic_router" caps="400" priority="0">
+        
+        <resource name="RAM" quantum="128M"/>
+        <provides>
+            <service name="Nic"/>
+            <service name="Uplink"/>
+        </provides>
+        <config verbose_domain_state="yes">
+
+
+            <policy label_prefix="monkey_concierge" domain="downlink"/>
+            <policy label_prefix="drivers" domain="uplink"/>
+
+            <domain name="uplink">
+
+                <nat domain="downlink"
+                     tcp-ports="16384"
+                     udp-ports="16384"
+                     icmp-ids="16384"/>
+
+				<tcp-forward port="10000" domain="downlink" to="10.0.3.2"/>
+
+            </domain>
+
+
+			<domain name="downlink" interface="10.0.3.1/24">
+
+				<dhcp-server ip_first="10.0.3.2" ip_last="10.0.3.2">
+                    <dns-server ip="8.8.8.8"/>
+                    <dns-server ip="1.1.1.1"/>
+                </dhcp-server>
+
+                <tcp dst="0.0.0.0/0"><permit-any domain="uplink" /></tcp>
+                <udp dst="0.0.0.0/0"><permit-any domain="uplink" /></udp>
+                <icmp dst="0.0.0.0/0" domain="uplink"/>
+
+            </domain>
+
+        </config>
+    </start>
+
+
+
+    <start name="monkey_concierge" caps="2000" priority="-1">
+        
+        <resource name="RAM" quantum="1G"/>
+
+        <config>
+            <vfs>
+                <dir name="dev"> <log/> </dir>
+                <dir name="socket"> <lwip dhcp="yes"/> </dir>
+                <dir name="pipe"> <pipe/> </dir>
+            </vfs>
+            <libc stdout="/dev/log" socket="/socket" pipe="/pipe"/>
+            
+
+            <monkey-concierge>
+            
+                <server>
+                    <port>10000</port>
+                </server>
+
+                <memory-node>
+                    <key>a9f4fb48-0ee5-4196-891d-48a9f0b0b687</key>
+                </memory-node>
+                
+                <memory-node>
+                    <key>41f413a9-2c21-4721-9f0d-d8ee9b4961f1</key>
+                </memory-node>
+                
+
+                <app>
+                    <id>1</id>
+                    <key>f578bd06-6f8e-42b3-8be9-860c7c645549</key>
+                </app>
+
+                <app>
+                    <id>2</id>
+                    <key>8370c1fe-d422-42d9-a261-05aed72313c3</key>
+                </app>
+
+            </monkey-concierge>
+
+
+        </config>
+
+        <route>
+            <service name="Nic"> <child name="nic_router"/> </service>
+            <any-service> <parent/> <any-child/> </any-service>
+        </route>
+    </start>
+
+
+</config>
+
+}
+
+
+#
+# Boot image
+#
+
+
+build_boot_image { core ld.lib.so init timer monkey_concierge }
+
+append qemu_args " -nographic "
+append_qemu_nic_args "hostfwd=tcp:127.0.0.1:5555-:10000"
+
+run_genode_until forever

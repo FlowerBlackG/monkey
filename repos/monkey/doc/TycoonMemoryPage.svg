@@ -1,0 +1,359 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light dark;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="921px" height="649px" viewBox="-0.5 -0.5 921 649" content="&lt;mxfile&gt;&lt;diagram id=&quot;ifeRqKaTvrRVW5MDiAJG&quot; name=&quot;Page-1&quot;&gt;5Vpds6I4EP01vE6FAKKPflx3a6tu7dTeqp3dx6xETQ0SK8Srzq/fIAEhAQRBxJknSdOJIX1Od7oTw5rvTr8xtN++Uw/7BgTeybAWBoSm4zriJ5KcY8nYHseCDSOeVLoKPsgPLIVASg/Ew2FOkVPqc7LPC1c0CPCK52SIMXrMq62pn//XPdpgTfCxQr4u/UY8vpVf4YCr/HdMNtvkn00g3+xQoiwF4RZ59JgRWW+GNWeU8vhpd5pjP1q8ZF3ifsuSt+nEGA54nQ5QLnzIz8nHYU98q2wGNBA/M3wi/B/RBF8c2fpXtEz5vIjsCpLGOWkEnJ3jTq6TtNNuUePa79JKOq5pwJdoR/xI8AfmM4ZIEIo5vtOAivfxhKNZln6zFIX0wFaJlitxgtgGS7VJuuACqZjusJiGUGHYR5x85odHEjKbVE92nTKGzhmFPSUBDzMjf40EQkGifzySppfYH9mKhRR9B7TTd8bV+tCt1BcP8RcmrcxSXUUXVBUjTALsE/kHuaJLhnEz1LlZ2IHnwC56Lz2RCe+G4URHod0FCnWz2nmzWgnskiHiWcleFfiwFDzBsTJQ/C0VAyWKdL0OMVfA1RROlganvwnjBxTpTD2P4TCy2dfIgUMw8+nquwY1jk9i6WfIJ5tASHy8jpqfmHEiXPxUinfE86IeMzEk+YH+u/SOgCIJLoZyZoaziEY6cBpKaIhmyBn9jufUp+wK5jXxfVXUAHGjFHHRPPGpGnM6mo7XMJUSfpsJURYoB1jOWhWmcTTTTFeriz2acB3eFWJgjutgEFy3HxRxdK6DG1zvl6K2hoO33Z6fJUENODKgZYLLsqaPs8N6bcyhMRUzB/JhCYzJ0pjYxszOaH5jhOOrarHSQviEs1SqGuwd7ffYKx9n7tODV/JnCqibYMpuyeakwzhvdzPZVWbYnsqybDdVgNxDd9PU7Lygx2DDkNcovJsZvmfof4vyOb5n+D+08G6CYhvW5nxde0w0c1SQamlMYQmpqvRKeaXoSV5VqWSpVaA3PHalXrUfdkHNnLGRmgTTHLPcmswy88xyh8GsJPXvMprWtoUe0T7Owap3JzdgU5hWFzubprm0o+TSNriRGyv6Vse5rtimPyAk1iXuMENiIVqcQaDlRmVE1XdAx2gBHUXs5tvgnzBc22VJUD/hWt99/fKbYdMqYL7bU8wuyEJb7p/u2j49p9ZdsPBPqXVbary9UbvW9Ecde1y9etiXxy0uPLy0xx2pleF+Pa5+sPAXRl6//B7GoYLpFDjatmWHTrZYzq3DKlUfdkt4qG/Ie8rclIr0kw49i4DRNgLfd+ppPXYvDd2uw33trGsYx9sFln5KyH/0cbKpnzINKGmqOD54iRBu9xrCoZ4AtwvhL17iLLii0rquVtsWOq8+jmjfyBb5s9ua9zQUW7TOXbtb+zLu9Bspza5zID1SDigHejUHOn5qDgRhawfaRal5EN4zvQj69FMJLS+2O97r6lWMxlfq2le2vjzHUReZue0Nutp00288xA4Kgj8D8ZkDvNny0s5VLek/9H6LaF6vXcesvF5et97+Bw==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <g>
+            <path d="M 860 420 L 860 630 Q 860 640 850 640 L 510 640 Q 500 640 500 630 L 500 590 Q 500 580 490 580 L 280 580 Q 270 580 270 570 L 270 526.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 270 521.12 L 273.5 528.12 L 270 526.37 L 266.5 528.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <path d="M 270 360 L 270 286.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 270 281.12 L 273.5 288.12 L 270 286.37 L 266.5 288.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="255" y="314" width="31" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="269.5" y="324.5">
+                    Free
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="0" y="0" width="270" height="30" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" font-size="16px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1.5" y="21.5">
+                    Virtual Address Page Block
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 210 280 L 210 353.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 210 358.88 L 206.5 351.88 L 210 353.63 L 213.5 351.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="188" y="314" width="45" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="209.5" y="324.5">
+                    Access
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="180" y="120" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="239.5" y="154.5">
+                    Empty Addr
+                </text>
+                <text x="239.5" y="188.5">
+                    Buff   🔴
+                </text>
+                <text x="239.5" y="205.5">
+                    Write  🔴
+                </text>
+                <text x="239.5" y="222.5">
+                    Dirty  🔴
+                </text>
+                <text x="239.5" y="239.5">
+                    Mapped 🔴
+                </text>
+                <text x="239.5" y="256.5">
+                    Cloud  🔴
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 300 400 L 393.63 400" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 398.88 400 L 391.88 403.5 L 393.63 400 L 391.88 396.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="317" y="394" width="67" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="349.5" y="404.5">
+                    Downgrade
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="180" y="360" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="239.5" y="411.5">
+                    Buff   🟢
+                </text>
+                <text x="239.5" y="428.5">
+                    Write  🟢
+                </text>
+                <text x="239.5" y="445.5">
+                    Dirty  🟢
+                </text>
+                <text x="239.5" y="462.5">
+                    Mapped 🟢
+                </text>
+                <text x="239.5" y="479.5">
+                    Cloud  🟢
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 400 480 L 306.37 480" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 301.12 480 L 308.12 476.5 L 306.37 480 L 308.12 483.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="332" y="474" width="38" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="349.5" y="484.5">
+                    Write
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 520 400 L 550 400 Q 560 400 560 390 L 560 385 Q 560 380 570 380 L 593.63 380" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 598.88 380 L 591.88 383.5 L 593.63 380 L 591.88 376.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="545" y="384" width="31" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="559.5" y="394.5">
+                    Sync
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 520 480 L 550 480 Q 560 480 560 490 L 560 495 Q 560 500 570 500 L 593.63 500" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 598.88 500 L 591.88 503.5 L 593.63 500 L 591.88 496.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="527" y="484" width="67" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="559.5" y="494.5">
+                    Downgrade
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="400" y="360" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="459.5" y="411.5">
+                    Buff   🟢
+                </text>
+                <text x="459.5" y="428.5">
+                    Write  🔴
+                </text>
+                <text x="459.5" y="445.5">
+                    Dirty  🟢
+                </text>
+                <text x="459.5" y="462.5">
+                    Mapped 🟢
+                </text>
+                <text x="459.5" y="479.5">
+                    Cloud  🟢
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 720 300 L 793.63 300" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 798.88 300 L 791.88 303.5 L 793.63 300 L 791.88 296.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="727" y="294" width="67" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="759.5" y="304.5">
+                    Downgrade
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 600 340 L 370 340 Q 360 340 360 350 L 360 355 Q 360 360 350 360 L 306.37 360" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 301.12 360 L 308.12 356.5 L 306.37 360 L 308.12 363.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="11px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="423" y="334" width="35" height="14" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="439.5" y="344">
+                    Write
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="600" y="260" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="659.5" y="311.5">
+                    Buff   🟢
+                </text>
+                <text x="659.5" y="328.5">
+                    Write  🔴
+                </text>
+                <text x="659.5" y="345.5">
+                    Dirty  🔴
+                </text>
+                <text x="659.5" y="362.5">
+                    Mapped 🟢
+                </text>
+                <text x="659.5" y="379.5">
+                    Cloud  🟢
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 600 540 L 570 540 Q 560 540 560 530 L 560 525 Q 560 520 550 520 L 526.37 520" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 521.12 520 L 528.12 516.5 L 526.37 520 L 528.12 523.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="545" y="524" width="31" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="559.5" y="534.5">
+                    Read
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 720 500 L 820 500 Q 830 500 830 490 L 830 426.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 830 421.12 L 833.5 428.12 L 830 426.37 L 826.5 428.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="11px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="802" y="494" width="28" height="14" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="814.5" y="504">
+                    Sync
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 600 580 L 280 580 Q 270 580 270 570 L 270 526.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 270 521.12 L 273.5 528.12 L 270 526.37 L 266.5 528.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="11px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="388" y="574" width="35" height="14" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="404.5" y="584">
+                    Write
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="600" y="460" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="659.5" y="511.5">
+                    Buff   🟢
+                </text>
+                <text x="659.5" y="528.5">
+                    Write  🔴
+                </text>
+                <text x="659.5" y="545.5">
+                    Dirty  🟢
+                </text>
+                <text x="659.5" y="562.5">
+                    Mapped 🔴
+                </text>
+                <text x="659.5" y="579.5">
+                    Cloud  🟢
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 800 380 L 726.37 380" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 721.12 380 L 728.12 376.5 L 726.37 380 L 728.12 383.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="745" y="374" width="31" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="759.5" y="384.5">
+                    Read
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 830 260 L 830 170 Q 830 160 820 160 L 526.37 160" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 521.12 160 L 528.12 156.5 L 526.37 160 L 528.12 163.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="11px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="712" y="154" width="28" height="14" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="724.5" y="164">
+                    Swap
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="800" y="260" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="859.5" y="311.5">
+                    Buff   🟢
+                </text>
+                <text x="859.5" y="328.5">
+                    Write  🔴
+                </text>
+                <text x="859.5" y="345.5">
+                    Dirty  🔴
+                </text>
+                <text x="859.5" y="362.5">
+                    Mapped 🔴
+                </text>
+                <text x="859.5" y="379.5">
+                    Cloud  🟢
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 520 240 L 590 240 Q 600 240 600 246.82 L 600 253.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 600 258.88 L 596.5 251.88 L 600 253.63 L 603.5 251.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="12px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="555" y="234" width="31" height="15" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="569.5" y="244.5">
+                    Read
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 400 200 L 306.37 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 301.12 200 L 308.12 196.5 L 306.37 200 L 308.12 203.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="11px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="337" y="194" width="28" height="14" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="349.5" y="204">
+                    Free
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="400" y="120" width="120" height="160" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;JetBrains Mono&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="459.5" y="154.5">
+                    Cloud Only
+                </text>
+                <text x="459.5" y="188.5">
+                    Buff   🔴
+                </text>
+                <text x="459.5" y="205.5">
+                    Write  🔴
+                </text>
+                <text x="459.5" y="222.5">
+                    Dirty  🔴
+                </text>
+                <text x="459.5" y="239.5">
+                    Mapped 🔴
+                </text>
+                <text x="459.5" y="256.5">
+                    Cloud  🟢
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

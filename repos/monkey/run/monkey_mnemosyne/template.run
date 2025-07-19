@@ -1,0 +1,175 @@
+#
+# Monkey Mnemosyne : Monkey Memory Node.
+#
+# Created on 2025.2.1 at Xiangzhou, Zhuhai, Guangdong
+# 
+# 
+# gongty  [at] tongji [dot] edu [dot] cn
+# 
+#
+
+
+#
+# Build
+#
+
+create_boot_directory
+
+import_from_depot [depot_user]/src/[base_src] \
+                  [depot_user]/pkg/[drivers_nic_pkg] \
+                  [depot_user]/src/init \
+                  [depot_user]/src/libc \
+                  [depot_user]/src/nic_router \
+                  [depot_user]/src/vfs \
+                  [depot_user]/src/vfs_lwip \
+                  [depot_user]/src/vfs_pipe
+
+
+build {
+    core init timer app/monkey_mnemosyne
+}
+
+
+#
+# Generate config
+#
+
+install_config {
+
+<config>
+    <default-route>
+        <any-service> <parent/> <any-child/> </any-service>
+    </default-route>
+
+    <parent-provides>
+        <service name="LOG"/>
+        <service name="PD"/>
+        <service name="CPU"/>
+        <service name="ROM"/>
+        <service name="IRQ"/>
+		<service name="RM"/>
+		<service name="IO_MEM"/>
+        <service name="IO_PORT"/>
+    </parent-provides>
+
+    <default caps="200"/>
+
+
+    <start name="timer">
+        <resource name="RAM" quantum="2M"/>
+        <provides> <service name="Timer"/> </provides>
+    </start>
+
+
+    <start name="drivers" caps="1000" managing_system="yes">
+        <resource name="RAM" quantum="256M"/>
+        <binary name="init"/>
+        <route>
+            <service name="ROM" label="config"> <parent label="drivers.config"/> </service>
+            <service name="Timer"> <child name="timer"/> </service>
+            <service name="Uplink"> <child name="nic_router"/> </service>
+            <any-service> <parent/> </any-service>
+        </route>
+    </start>
+
+    <start name="nic_router" caps="200">
+        <resource name="RAM" quantum="128M"/>
+        <provides>
+            <service name="Nic"/>
+            <service name="Uplink"/>
+        </provides>
+        <config verbose_domain_state="yes">
+
+
+            <policy label_prefix="monkey_mnemosyne" domain="downlink"/>
+            <policy label_prefix="drivers" domain="uplink"/>
+
+            <domain name="uplink">
+
+                <nat domain="downlink"
+                     tcp-ports="16384"
+                     udp-ports="16384"
+                     icmp-ids="16384"/>
+
+                <tcp-forward port="10000" domain="downlink" to="10.0.3.2"/>
+
+            </domain>
+
+
+            <domain name="downlink" interface="10.0.3.1/24">
+
+                <dhcp-server ip_first="10.0.3.2" ip_last="10.0.3.2">
+                    <dns-server ip="8.8.8.8"/>
+                    <dns-server ip="1.1.1.1"/>
+                </dhcp-server>
+
+                <tcp dst="0.0.0.0/0"><permit-any domain="uplink" /></tcp>
+                <udp dst="0.0.0.0/0"><permit-any domain="uplink" /></udp>
+                <icmp dst="0.0.0.0/0" domain="uplink"/>
+
+            </domain>
+
+        </config>
+    </start>
+
+
+
+    <start name="monkey_mnemosyne" caps="300">
+        <resource name="RAM" quantum="64M"/>
+
+        <config>
+            <vfs>
+                <dir name="dev"> <log/> </dir>
+                <dir name="socket"> <lwip dhcp="yes"/> </dir>
+                <dir name="pipe"> <pipe/> </dir>
+            </vfs>
+            <libc stdout="/dev/log" socket="/socket" pipe="/pipe"/>
+            
+
+            <monkey-mnemosyne>
+                <concierge>
+                    <ip>10.0.2.2</ip>
+                    <port>5555</port>
+                </concierge>
+
+                <mnemosyne>
+                    <ip>10.0.2.2</ip>
+
+                    <!-- Clients should connect to this port so it can reach mnemosyne. -->
+                    <port>5556</port>  
+                    
+                    <!-- mnemosyne server should listen to this port so it receives requests from `port` above. -->
+                    <listen-port>10000</listen-port>
+
+                    <key>41f413a9-2c21-4721-9f0d-d8ee9b4961f1</key>
+                </mnemosyne>
+
+            </monkey-mnemosyne>
+
+
+        </config>
+
+        <route>
+            <service name="Nic"> <child name="nic_router"/> </service>
+            <any-service> <parent/> <any-child/> </any-service>
+        </route>
+    </start>
+
+
+</config>
+
+}
+
+
+#
+# Boot image
+#
+
+
+build_boot_image { core ld.lib.so init timer monkey_mnemosyne }
+
+append qemu_args " -nographic "
+append_qemu_nic_args "hostfwd=tcp:127.0.0.1:5556-:10000"
+
+run_genode_until forever
+

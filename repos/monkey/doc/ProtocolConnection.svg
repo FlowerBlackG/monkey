@@ -1,0 +1,491 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" style="background: transparent; background-color: transparent; color-scheme: light dark;" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1955px" height="841px" viewBox="-0.5 -0.5 1955 841" content="&lt;mxfile&gt;&lt;diagram id=&quot;f5WRe-ygdIfL7X1XJp0P&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <g>
+            <path d="M 80 120 L 80 680" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="0" y="80" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="79.5" y="97">
+                    Client
+                </text>
+                <text x="79.5" y="114">
+                    Mnemosyne, Tycoon
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 440 120 L 440 680" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="360" y="80" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="439.5" y="97">
+                    Server
+                </text>
+                <text x="439.5" y="114">
+                    Mnemosyne, Concierge
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="0" y="680" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="79.5" y="697">
+                    Client
+                </text>
+                <text x="79.5" y="714">
+                    Mnemosyne, Tycoon
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="360" y="680" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="439.5" y="697">
+                    Server
+                </text>
+                <text x="439.5" y="714">
+                    Mnemosyne, Concierge
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 80 160 L 433.63 160" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 438.88 160 L 431.88 163.5 L 433.63 160 L 431.88 156.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="138" y="141" width="245" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="154.5">
+                    Protocol versions supported by client
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 440 200 L 86.37 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 81.12 200 L 88.12 196.5 L 86.37 200 L 88.12 203.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="141" y="181" width="240" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="194.5">
+                    Protocol versions provided by server
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 80 240 L 433.63 240" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 438.88 240 L 431.88 243.5 L 433.63 240 L 431.88 236.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="143" y="221" width="235" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="234.5">
+                    Protocol version for this connection
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 470 140 L 465 140 Q 460 140 460 150 L 460 180 Q 460 190 455 190 L 452.5 190 Q 450 190 455 190 L 457.5 190 Q 460 190 460 200 L 460 230 Q 460 240 465 240 L 470 240" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(460,0)scale(-1,1)translate(-460,0)" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="471.5" y="195.5">
+                    Hello (Available for every protocol version)
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="440" y="260" width="180" height="30" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="529.5" y="280.5">
+                    Protocol version agreed
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 440 320 L 86.37 320" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 81.12 320 L 88.12 316.5 L 86.37 320 L 88.12 323.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="228" y="301" width="66" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="314.5">
+                    Challenge
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 80 360 L 433.63 360" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 438.88 360 L 431.88 363.5 L 433.63 360 L 431.88 356.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="190" y="341" width="142" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="354.5">
+                    Response with cipher
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 440 400 L 86.37 400" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 81.12 400 L 88.12 396.5 L 86.37 400 L 88.12 403.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="146" y="381" width="230" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="394.5">
+                    Response indicates accept or deny
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 470 300 L 465 300 Q 460 300 460 310 L 460 340 Q 460 350 455 350 L 452.5 350 Q 450 350 455 350 L 457.5 350 Q 460 350 460 360 L 460 390 Q 460 400 465 400 L 470 400" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(460,0)scale(-1,1)translate(-460,0)" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="471.5" y="355.5">
+                    Auth (Differs per protocol version)
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="440" y="510" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="524.5" y="530.5">
+                    Client identity verified
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 440 440 L 410 440 Q 400 440 400 450 L 400 470 Q 400 480 410 480 L 433.63 480" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 438.88 480 L 431.88 483.5 L 433.63 480 L 431.88 476.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="end" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="149" y="452" width="251" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="397.5" y="465.5">
+                    Move connection to Sunflower lounge
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 433.63 560 L 86.37 560" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 438.88 560 L 431.88 563.5 L 433.63 560 L 431.88 556.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 81.12 560 L 88.12 556.5 L 86.37 560 L 88.12 563.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="181" y="552" width="160" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="259.5" y="565.5">
+                    Requests and responses
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="180" y="0" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="16px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="264.5" y="21.5">
+                    Session Connection
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="880" y="0" width="670" height="30" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="16px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1214.5" y="21.5">
+                    Protocol Connection Agent Lib API Design (Example for calling protocol API "paimon")
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1130 120 L 1130 800" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="1050" y="80" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1129.5" y="97">
+                    Client Agent
+                </text>
+                <text x="1129.5" y="114">
+                    net::ProtocolConnection
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1330 120 L 1330 800" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="1250" y="80" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1329.5" y="97">
+                    Server Agent
+                </text>
+                <text x="1329.5" y="114">
+                    net::ProtocolConnection
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="1050" y="800" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1129.5" y="817">
+                    Client Agent
+                </text>
+                <text x="1129.5" y="834">
+                    net::ProtocolConnection
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="1250" y="800" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1329.5" y="817">
+                    Server Agent
+                </text>
+                <text x="1329.5" y="834">
+                    net::ProtocolConnection
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 930 239 L 1123.63 239" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1128.88 239 L 1121.88 242.5 L 1123.63 239 L 1121.88 235.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="976" y="220" width="110" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1029.5" y="233.5">
+                    Call sendPaimon
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 930 120 L 930 800" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="850" y="80" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="929.5" y="105.5">
+                    Client App
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="850" y="800" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="929.5" y="825.5">
+                    Client App
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1530 120 L 1530 800" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="1450" y="80" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1529.5" y="97">
+                    Server App
+                </text>
+                <text x="1529.5" y="114">
+                    (Sunflower Lounge)
+                </text>
+            </g>
+        </g>
+        <g>
+            <rect x="1450" y="800" width="160" height="40" fill="#ffffff" stroke="#000000" pointer-events="all" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1529.5" y="817">
+                    Server App
+                </text>
+                <text x="1529.5" y="834">
+                    (Sunflower Lounge)
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1130 279 L 1323.63 279" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1328.88 279 L 1321.88 282.5 L 1323.63 279 L 1321.88 275.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1138" y="260" width="186" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1229.5" y="273.5">
+                    Transfer data using protocol
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1330 319 L 1360 319 Q 1370 319 1370 329 L 1370 349 Q 1370 359 1360 359 L 1336.37 359" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1331.12 359 L 1338.12 355.5 L 1336.37 359 L 1338.12 362.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1372" y="331" width="127" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1371.5" y="344.5">
+                    Call decodePaimon
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1330 399 L 1523.63 399" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1528.88 399 L 1521.88 402.5 L 1523.63 399 L 1521.88 395.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1384" y="380" width="94" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1429.5" y="393.5">
+                    Data decoded
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 930 160 L 960 160 Q 970 160 970 170 L 970 190 Q 970 200 960 200 L 936.37 200" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 931.12 200 L 938.12 196.5 L 936.37 200 L 938.12 203.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="972" y="172" width="86" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="971.5" y="185.5">
+                    Prepare data
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1530 440 L 1560 440 Q 1570 440 1570 450 L 1570 470 Q 1570 480 1560 480 L 1536.37 480" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1531.12 480 L 1538.12 476.5 L 1536.37 480 L 1538.12 483.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1572" y="452" width="132" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1571.5" y="465.5">
+                    Process the request
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1530 520 L 1336.37 520" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1331.12 520 L 1338.12 516.5 L 1336.37 520 L 1338.12 523.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1375" y="501" width="111" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1429.5" y="514.5">
+                    Call replyPaimon
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1330 560 L 1136.37 560" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1131.12 560 L 1138.12 556.5 L 1136.37 560 L 1138.12 563.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1138" y="541" width="186" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1229.5" y="554.5">
+                    Transfer data using protocol
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1130 600 L 1160 600 Q 1170 600 1170 610 L 1170 630 Q 1170 640 1160 640 L 1136.37 640" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1131.12 640 L 1138.12 636.5 L 1136.37 640 L 1138.12 643.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1172" y="612" width="85" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1171.5" y="625.5">
+                    Check errors
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1130 680 L 1160 680 Q 1170 680 1170 690 L 1170 710 Q 1170 720 1160 720 L 1136.37 720" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 1131.12 720 L 1138.12 716.5 L 1136.37 720 L 1138.12 723.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="1172" y="684" width="147" height="35" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1171.5" y="697">
+                    Call appreciatePaimon
+                </text>
+                <text x="1171.5" y="714">
+                    (If no error)
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1130 760 L 936.37 760" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+            <path d="M 931.12 760 L 938.12 756.5 L 936.37 760 L 938.12 763.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <rect fill="#ffffff" stroke="none" x="968" y="741" width="125" height="18" stroke-width="0" style="fill: light-dark(#ffffff, var(--ge-dark-color, #121212));"/>
+                <text x="1029.5" y="754.5">
+                    Response decoded
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 1770 210 L 1765 210 Q 1760 210 1760 220 L 1760 460 Q 1760 470 1755 470 L 1752.5 470 Q 1750 470 1755 470 L 1757.5 470 Q 1760 470 1760 480 L 1760 720 Q 1760 730 1765 730 L 1770 730" fill="none" stroke="#000000" stroke-miterlimit="10" transform="translate(1760,0)scale(-1,1)translate(-1760,0)" pointer-events="all" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="1771.5" y="475.5">
+                    One-click by calling paimon
+                </text>
+            </g>
+        </g>
+        <g>
+            <path d="M 810 210 L 1730 210" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <path d="M 810 730 L 1730 730" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="stroke" style="stroke: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));"/>
+        </g>
+        <g>
+            <rect x="100" y="630" width="320" height="30" fill="none" stroke="none" pointer-events="all"/>
+        </g>
+        <g>
+            <g fill="#000000" font-family="&quot;MiSans&quot;" text-anchor="middle" font-size="14px" style="fill: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));">
+                <text x="259.5" y="650.5">
+                    Close connection by simply close the socket.
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
