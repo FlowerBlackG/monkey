@@ -12,6 +12,7 @@
 
 #include "./yros/MemoryManager.h"
 #include "./yros/KernelMemoryAllocator.h"
+#include "./yros/FreeMemoryManager.h"
 
 using namespace monkey;
 
@@ -94,6 +95,9 @@ monkey::Status Tycoon::init(const Genode::Xml_node& xml, const InitParams& param
         return Status::SUCCESS;
     }
 
+    yros::memory::FreeMemoryManager::tycoon = this;
+
+
     Status status = loadConfig(xml);
     if (status != Status::SUCCESS) {
         return status;
@@ -140,6 +144,9 @@ monkey::Status Tycoon::openConnection(bool concierge, adl::int64_t id, bool forc
     }
 
 
+    Genode::log("Tycoon: Opening connection to ", (concierge ? "concierge" : "mnemosyne"), " with id ", id, ".");
+
+
     // ------ open new connection. ------
 
     Status status = Status::SUCCESS;
@@ -158,11 +165,14 @@ monkey::Status Tycoon::openConnection(bool concierge, adl::int64_t id, bool forc
                 status = Status::SUCCESS;
                 conn.ip = it.ip;
                 conn.port = it.port;
+                conn.memoryNodeId = it.id;
                 break;
             }
         }
-        if (status != Status::SUCCESS)
+        if (status != Status::SUCCESS) {
+            Genode::error("Tycoon: Failed to find mnemosyne info of id ", id, ".");
             return status;
+        }
     }
     
 
@@ -206,6 +216,7 @@ monkey::Status Tycoon::openConnection(bool concierge, adl::int64_t id, bool forc
     pConn->ip = conn.ip;
     pConn->port = conn.port;
     pConn->socketFd = conn.socketFd;
+    pConn->memoryNodeId = conn.memoryNodeId;
     pConn->dock = &dock;
 
     return Status::SUCCESS;
@@ -219,20 +230,22 @@ void Tycoon::handlePageFaultSignal() {
 
     Genode::Region_map& rm = env.rm();
     Genode::Region_map::State state = rm.state();
-    auto addr = state.addr;
-    if (addr < memSpace.vaddr || addr >= memSpace.vaddr + memSpace.size) {
+    auto faultAddr = state.addr;
+    auto pageAddr = state.addr & ~0xffful;
+    if (faultAddr < memSpace.vaddr || faultAddr >= memSpace.vaddr + memSpace.size) {
         // address not managed by Tycoon.
         return;
     }
 
-    Genode::log("Tycoon: Page fault on ", Genode::Hex(state.addr), " caught.");
+    Genode::log("====== Tycoon: Page fault on ", Genode::Hex(state.addr), " caught. ======");
     Genode::log(
         "> Type: ",
         (
             state.type == Genode::Region_map::State::READ_FAULT  ? "READ_FAULT"  :
             state.type == Genode::Region_map::State::WRITE_FAULT ? "WRITE_FAULT" :
             state.type == Genode::Region_map::State::EXEC_FAULT  ? "EXEC_FAULT"  : "READY"
-        )
+        ),
+        "> Page Addr: ", Genode::Hex(pageAddr)
     );
 
     if (state.type == Genode::Region_map::State::EXEC_FAULT) {
@@ -241,12 +254,11 @@ void Tycoon::handlePageFaultSignal() {
     }
 
 
-    Genode::Mutex::Guard _g {this->pageMaintenanceLock};
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
 
 
-    auto pageAddr = state.addr & ~0xffful;
-    bool isNewPage = false;
-    if (pages.hasKey(pageAddr)) {
+    bool pageRegistered = pages.hasKey(pageAddr);
+    if (pageRegistered) {
         auto& page = pages[pageAddr];
         if (page.present && page.mapped) {
             env.rm().detach(page.addr);
@@ -263,7 +275,6 @@ void Tycoon::handlePageFaultSignal() {
     }
     else {
         Status status = allocPage(pageAddr);
-        isNewPage = true;
         if (status != Status::SUCCESS) {
             Genode::error("Tycoon handlePageFaultSignal: Failed to alloc page.");
             return;
@@ -282,36 +293,41 @@ void Tycoon::handlePageFaultSignal() {
     // assert: buffers not empty, pages[addr] allocated.
 
     auto& page = pages[pageAddr];
+
     page.present = true;
     page.mapped = true;
-    page.dirty = true;
-    page.writable = true;
-    page.buf = buffers.pop();
+    page.addr = pageAddr;
+    
+    if (page.sharing == tycoon::Page::Sharing::READ_WRITE || page.sharing == tycoon::Page::Sharing::NONE) {
+        page.writable = true;
+    }
+    else {
+        page.writable = false;
+    }
+    
+    if (!page.dirty)
+        page.dirty = page.writable;
 
-    if (isNewPage) {
-        env.rm().attach_at(page.buf, page.addr);
+    page.buf = buffers.pop();
+    page.present = true;
+
+    if (!pageRegistered) {
+        env.rm().attach(
+            page.buf,
+            4096,
+            0,
+            true,
+            page.addr,
+            false,
+            page.writable
+        );
         return;
     }
     
 
     // fetch old page stored on remote.
 
-    Status status = openConnection(false, page.mnemosyneId);
-    
-    if (status != Status::SUCCESS) {
-        Genode::error("Failed to open connection to mnemosyne ", page.mnemosyneId);
-        return;
-    }
-
-    adl::uintptr_t tmpAddr = 0x90000000ul;  // todo: really this address?
-
-    env.rm().attach_at(page.buf, tmpAddr);
-    status = connections.mnemosynes[page.mnemosyneId]->readBlock(
-        page.blockId,
-        (void*) tmpAddr
-    );
-
-    env.rm().detach(tmpAddr);
+    Status status = loadPage(page);
 
     if (status != Status::SUCCESS) {
         page.mapped = false;
@@ -319,12 +335,22 @@ void Tycoon::handlePageFaultSignal() {
         Genode::error("Something went wrong. 5c9c81ec-0c49-40df-8f34-332a5b5f43a7");
         return;
     }
-
-    env.rm().attach_at(page.buf, page.addr);
+    
+    env.rm().attach(
+        page.buf,
+        4096,
+        0,
+        true,
+        page.addr,
+        false,
+        page.writable
+    );
 }
 
 
 monkey::Status Tycoon::allocPage(adl::uintptr_t addr) {
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
+
     adl::uintptr_t pageAddr = addr & ~0xffful;
     if (pages.hasKey(pageAddr)) {
         Genode::warning("Page at ", Genode::Hex(pageAddr), " already exists.");
@@ -332,8 +358,11 @@ monkey::Status Tycoon::allocPage(adl::uintptr_t addr) {
     }
 
     Status status;
-    adl::int64_t blockId;
+    
     adl::int64_t mnemosyneId;
+
+    tycoon::Page page;
+
     for (auto& it : memoryNodesInfo) {
         status = openConnection(false, it.id);
         if (status != Status::SUCCESS)
@@ -341,7 +370,7 @@ monkey::Status Tycoon::allocPage(adl::uintptr_t addr) {
 
         auto conn = connections.mnemosynes[it.id];
 
-        status = conn->tryAlloc(&blockId);
+        status = conn->tryAlloc(&page.blockId, &page.dataVersion, &page.readKey, &page.writeKey);
         if (status != Status::SUCCESS) {
             Genode::log("Tycoon: Failed to alloc on ", it.ip.toString().c_str(), ":", it.port);
             Genode::log(
@@ -360,14 +389,22 @@ monkey::Status Tycoon::allocPage(adl::uintptr_t addr) {
         return status;
     }
 
-    auto& page = pages[pageAddr];
     page.addr = pageAddr;
-    page.blockId = blockId;
     page.dirty = false;
     page.present = false;
     page.writable = false;
     page.mapped = false;
     page.mnemosyneId = mnemosyneId;
+
+    pages[pageAddr] = page;
+
+    Genode::log("Tycoon: Allocated page from remote.");
+    Genode::log("> addr        : ", Genode::Hex(page.addr));
+    Genode::log("> blockId     : ", page.blockId);
+    Genode::log("> dataVersion : ", page.dataVersion);
+    Genode::log("> readKey     : ", page.readKey);
+    Genode::log("> writeKey    : ", page.writeKey);
+    Genode::log("> mnemosyneId : ", page.mnemosyneId);
     
     return Status::SUCCESS;
 }
@@ -376,6 +413,7 @@ monkey::Status Tycoon::allocPage(adl::uintptr_t addr) {
 
 monkey::Status Tycoon::freePage(adl::uintptr_t addr) {
     adl::uintptr_t pageAddr = addr & ~0xffful;
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
     if (!pages.hasKey(pageAddr)) {
         return Status::NOT_FOUND;
     }
@@ -390,7 +428,7 @@ monkey::Status Tycoon::freePage(adl::uintptr_t addr) {
         return status;
     }
 
-    if ((status = connections.mnemosynes[page.mnemosyneId]->freeBlock(page.blockId)) != Status::SUCCESS) {
+    if ((status = connections.mnemosynes[page.mnemosyneId]->unrefBlock(page.blockId)) != Status::SUCCESS) {
         Genode::error("Failed to free page.");
         return status;
     }
@@ -412,6 +450,7 @@ void Tycoon::disconnectConcierge() {
 
 monkey::Status Tycoon::swapOut() {
     tycoon::Page* best = nullptr;
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
 
     // TODO: This procedure should be optimized.
     for (auto it : pages) {
@@ -453,6 +492,7 @@ monkey::Status Tycoon::swapOut() {
 monkey::Status Tycoon::sync(tycoon::Page& page) {
     if (!page.present || !page.dirty)
         return Status::SUCCESS;
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
     
     // assert: page.present, page.dirty
 
@@ -468,7 +508,8 @@ monkey::Status Tycoon::sync(tycoon::Page& page) {
 
     status = connections.mnemosynes[page.mnemosyneId]->writeBlock(
         page.blockId, 
-        (void*) page.addr
+        (void*) page.addr,
+        &page.dataVersion
     );
 
     if (!page.mapped) {
@@ -480,7 +521,8 @@ monkey::Status Tycoon::sync(tycoon::Page& page) {
         return status;
     }
 
-    page.dirty = false;
+    if (!page.writable)
+        page.dirty = false;
     return Status::SUCCESS;
 }
 
@@ -493,6 +535,190 @@ monkey::Status Tycoon::sync() {
             return status;
         }
     }
+
+    return Status::SUCCESS;
+}
+
+
+monkey::Status Tycoon::fetchPageDataVersion(tycoon::Page& page, adl::int64_t* out) {
+    Status status = openConnection(false, page.mnemosyneId);
+    if (status != Status::SUCCESS) {
+        Genode::error("Something went wrong.");
+        return status;
+    }
+
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
+    if (!page.mapped) {
+        env.rm().attach_at(page.buf, page.addr);
+    }
+
+    adl::int64_t dataVer;
+    status = connections.mnemosynes[page.mnemosyneId]->getBlockDataVersion(
+        page.blockId, 
+        &dataVer
+    );
+
+    if (status == Status::SUCCESS) {
+        *out = dataVer;
+    }
+
+    return status;
+}
+
+
+monkey::Status Tycoon::refPage(
+    adl::uintptr_t vaddr, 
+    adl::int64_t accessKey,
+    PageAccessRight accessRight
+) {
+    if (!memSpace.manage) {
+        return Status::INVALID_PARAMETERS;
+    }
+
+    adl::uintptr_t pageAddr = vaddr & ~0xffful;
+
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
+
+    if (pages.hasKey(pageAddr)) {
+        return Status::INVALID_PARAMETERS;  // Address already used.
+    }
+
+    tycoon::Page page;
+    page.addr = pageAddr;
+    page.sharing = accessRight == PageAccessRight::READ_ONLY
+        ? tycoon::Page::Sharing::READ_ONLY
+        : tycoon::Page::Sharing::READ_WRITE;
+    
+    monkey::Status status = Status::NOT_FOUND;
+
+    // try to find a mnemosyne to ref this page.
+    for (auto it : this->memoryNodesInfo) {
+        status = openConnection(false, it.id, false);
+        if (status != Status::SUCCESS)
+            continue;
+        auto conn = connections.mnemosynes[it.id];
+        status = conn->refBlock(accessKey, &page.blockId);
+        if (status != Status::SUCCESS)
+            continue;
+        page.mnemosyneId = conn->memoryNodeId;
+        Genode::error("page mnemosyne id set to: ", conn->memoryNodeId);
+        Genode::error(">  real id: ", it.id);
+        break;
+    }
+
+
+    if (status != Status::SUCCESS) {
+        Genode::error("Tycoon: Failed to ref page. No available mnemosyne.");
+        return status;
+    }
+
+
+    if (accessRight == PageAccessRight::READ_WRITE) {
+        page.writable = true;
+    }
+
+    page.present = false;
+    page.mapped = false;
+    page.readKey = 0;
+    page.writeKey = 0;
+    
+    pages[pageAddr] = page;
+    return status;
+}
+
+
+monkey::Status Tycoon::unrefPage(adl::uintptr_t vaddr) {
+    adl::uintptr_t pageAddr = vaddr & ~0xffful;
+
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
+
+    if (!pages.hasKey(pageAddr)) {
+        return Status::NOT_FOUND;  // Address not used.
+    }
+
+    tycoon::Page& page = pages[pageAddr];
+
+    if (page.sharing == tycoon::Page::Sharing::NONE) {
+        Genode::error("Tycoon: Page not shared. Cannot unref.");
+        return Status::INVALID_PARAMETERS;
+    }
+
+    if (page.mapped) {
+        env.rm().detach(vaddr);
+        page.mapped = false;
+    }
+
+
+    if (page.dirty) {
+        sync(page);
+        page.dirty = false;
+    }
+
+    openConnection(false, page.mnemosyneId, false);
+    Status status = connections.mnemosynes[page.mnemosyneId]->unrefBlock(page.blockId);
+
+    pages.removeKey(pageAddr);
+    return status;
+}
+
+
+monkey::Status Tycoon::loadPage(tycoon::Page& page) {
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
+
+    if (!page.present) {
+        Genode::error("Tycoon: Page not present. Cannot load.");
+        return Status::INVALID_PARAMETERS;
+    }
+
+    Status status = openConnection(false, page.mnemosyneId);
+    if (status != Status::SUCCESS) {
+        Genode::error("Failed to open connection to mnemosyne ", page.mnemosyneId);
+        return status;
+    }
+
+    adl::uintptr_t tmpAddr = MAINTENANCE_TMP_ADDR;
+
+    env.rm().attach_at(page.buf, tmpAddr);
+    status = connections.mnemosynes[page.mnemosyneId]->readBlock(
+        page.blockId,
+        (void*) tmpAddr,
+        &page.dataVersion
+    );
+
+    if (status != Status::SUCCESS) {
+        Genode::error("Something went wrong. 5c9c81ec-0c49-40df-8f34-332a5b5f43a7");
+        env.rm().detach(tmpAddr);
+        return status;
+    }
+
+    env.rm().detach(tmpAddr);
+    
+    return Status::SUCCESS;
+}
+
+
+monkey::Status Tycoon::updateSharedPage(tycoon::Page& page) {
+    adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
+
+    if (!page.present) {
+        Genode::error("Page not present. No need to update.");
+        return Status::INVALID_PARAMETERS;
+    }
+
+    adl::int64_t dataVer;
+    monkey::Status status = fetchPageDataVersion(page, &dataVer);
+    if (status != Status::SUCCESS) {
+        Genode::error("Tycoon: Failed to fetch page data version.");
+        return status;
+    }
+    
+
+    if (dataVer == page.dataVersion) {
+        // no need to update.
+        return Status::SUCCESS;
+    }
+
+    loadPage(page);
 
     return Status::SUCCESS;
 }
@@ -600,12 +826,18 @@ monkey::Status Tycoon::checkAvailableMem(adl::size_t* res) {
     adl::size_t sum = 0;
 
     for (auto& it : memoryNodesInfo) {
+        Genode::log(
+            "Tycoon: Checking available memory on ", 
+            it.ip.toString().c_str(), ":", it.port
+        );
         Status status = openConnection(false, it.id);
         if (status != Status::SUCCESS) {
             continue;
         }
 
         adl::size_t mem;
+
+        Genode::log("Sending request CheckAvailMem");
         status = connections.mnemosynes[it.id]->checkAvailMem(&mem);
         if (status == Status::SUCCESS) {
             Genode::log(

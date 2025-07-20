@@ -15,6 +15,11 @@
 
 #include <adl/sys/types.h>
 
+#include <monkey/Status.h>
+
+
+namespace monkey { class Tycoon;}
+
 namespace yros {
 namespace memory {
 
@@ -32,10 +37,12 @@ namespace FreeMemoryManager {
     const int ALLOC_PAGE_NODE_THREHOLD = 50 - 6;
     const int FREE_PAGE_NODE_THREHOLD = 6;
 
+    extern monkey::Tycoon* tycoon;
+
 
     void init(void* firstPageOfLink);
 
-    int free(adl::uint64_t address, adl::uint64_t size, bool dontAdjustPage = false);
+    int free(adl::uint64_t address, adl::uint64_t size, bool dontAdjustPage = false, bool init = false);
     adl::uint64_t alloc(adl::uint64_t size, bool dontAdjustPage = false);
     
     adl::uint64_t getTotalFreeMemory();

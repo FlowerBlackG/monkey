@@ -27,9 +27,18 @@ tycoon::MaintenanceThread::MaintenanceThread(
 
 void tycoon::MaintenanceThread::doMaintenance() {
 
-    Genode::Mutex::Guard _g {tycoon.pageMaintenanceLock};
+    adl::recursive_mutex::guard _g {tycoon.pageMaintenanceLock};
 
-    // TODO
+    for (auto it : tycoon.pages) {
+        auto& page = it.second;
+        if (page.sharing != tycoon::Page::Sharing::NONE && page.present) {
+            tycoon.updateSharedPage(page);
+        }
+        
+        if (page.dirty) {
+            tycoon.sync(page);
+        }
+    }
 }
 
 

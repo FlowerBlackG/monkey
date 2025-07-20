@@ -129,7 +129,7 @@ Status Protocol1Connection::auth(const adl::ByteArray& key) {
     if (response->code != 0)
         status = Status::PROTOCOL_ERROR;
 
-    adl::defaultAllocator.free(response);
+    this->freeMsg(response);
     return status;
 }
 
@@ -187,7 +187,7 @@ Status Protocol1Connection::auth(
 
     sendResponse(!!(nodeType == NodeType::Unknown), nullptr);
 
-    adl::defaultAllocator.free(response);
+    this->freeMsg(response);
     response = nullptr;
     return Status::SUCCESS;
 }
@@ -211,7 +211,7 @@ Status Protocol1Connection::recvAuth(adl::ByteArray& challenge) {
     }
 
     adl::memcpy(challenge.data(), msg->data, challenge.size());
-    adl::defaultAllocator.free(msg);
+    this->freeMsg(msg);
     return Status::SUCCESS;
 }
 

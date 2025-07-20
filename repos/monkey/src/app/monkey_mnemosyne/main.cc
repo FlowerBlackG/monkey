@@ -75,50 +75,6 @@ static void initAdlAlloc(Genode::Heap& heap) {
 }
 
 
-Block MnemosyneMain::allocMemoryBlock(adl::size_t size, adl::int64_t owner, bool record) {
-    if (size == 0) {
-        return {};
-    }
-
-    Genode::Mutex::Guard _g { memoryBlockAllocationLock };
-
-    adl::size_t finalSize = (size + 4095) & ~0xFFFul;
-
-    if (env.pd().avail_ram().value < MONKEY_MNEMOSYNE_HEAP_MEMORY_RESERVED + finalSize) {
-        return {};
-    }
-
-    Block b;
-    b.data = (char*) heap.alloc(finalSize);
-    if (!b.data) {
-        return {};
-    }
-
-    b.id = nextMemoryBlockId++;
-    b.owner = owner;
-    b.size = finalSize;
-
-    Genode::log("Allocated block for ", owner, ". Block id: ", b.id, ", size ", b.size);
-
-    if (record) {
-        this->memoryBlocks[b.id] = b;
-    }
-
-    return b;
-}
-
-
-void MnemosyneMain::freeMemoryBlock(Block& b) {
-    Genode::Mutex::Guard _g { memoryBlockAllocationLock };
-
-    this->memoryBlocks.removeKey(b.id, true);
-
-    Genode::log("Released block for ", b.owner, ". Block id: ", b.id, ", size ", b.size);
-    
-    heap.free(b.data, b.size);
-}
-
-
 Status MnemosyneMain::loadConfig() {
     Genode::Attached_rom_dataspace configDs { env, "config" };
     auto configRoot = configDs.xml().sub_node("monkey-mnemosyne");
@@ -302,7 +258,7 @@ Status MnemosyneMain::clockIn() {
 END:
     client.close();
     if (response) {
-        adl::defaultAllocator.free(response);
+        client.freeMsg(response);
         response = nullptr;
     }
     return status;
@@ -319,7 +275,7 @@ public:
 
     AppLoungeThread(
         MnemosyneMain& context, 
-        net::Protocol1Connection& client,
+        net::Protocol2Connection& client,
         OnExitCall onExit
     )
     : 
@@ -340,15 +296,15 @@ void MnemosyneMain::serveClient(net::Socket4& conn) {
 
     Status status;
 
-    net::Protocol1Connection client;
+    net::Protocol2Connection client;
     client.socketFd = conn.socketFd;
     client.ip = conn.ip;
     client.port = conn.port;
 
-    // Force use protocol v1.
-    if (client.hello(1, HelloMode::SERVER) != Status::SUCCESS)
+    // Force use protocol v2.
+    if (client.hello(net::protocol::LATEST_VERSION, HelloMode::SERVER) != Status::SUCCESS)
         return;
-    Genode::log("> Using protocol version 1.");
+    Genode::log("> Using protocol version ", net::protocol::LATEST_VERSION, ".");
 
     // Auth
 
@@ -371,12 +327,14 @@ void MnemosyneMain::serveClient(net::Socket4& conn) {
     {
         if (loungeThreads.hasKey(client.nodeId)) {
             Genode::error("Node (id: ", client.nodeId, ") already serving. Refuse to serve another.");
+            client.close();
             return;
         }
 
         auto thread = adl::defaultAllocator.allocNoConstruct<AppLoungeThread>(1);
         if (thread == nullptr) {
             Genode::error("Failed to create lounge thread. Out of memory.");
+            client.close();
             return;
         }
 

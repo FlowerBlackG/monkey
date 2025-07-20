@@ -23,6 +23,8 @@
 
 #include <monkey/tycoon/MaintenanceThread.h>
 
+#include <adl/recursive_mutex>
+
 
 namespace monkey {
 
@@ -118,8 +120,7 @@ protected:
 
     tycoon::MaintenanceThread maintenanceThread;
 
-
-    Genode::Mutex pageMaintenanceLock;
+    adl::recursive_mutex pageMaintenanceLock;
     
     UserAllocator userAllocator;
 
@@ -139,6 +140,8 @@ protected:
 
     void handlePageFaultSignal();
 
+    monkey::Status loadPage(tycoon::Page&);
+
     /**
      * Try allocate a page.
      * If success, page would be logged to `pages`.
@@ -146,7 +149,6 @@ protected:
      * @param addr Should be 4KB aligned.
      */
     monkey::Status allocPage(adl::uintptr_t addr);
-    monkey::Status freePage(adl::uintptr_t addr);
 
     void disconnectConcierge();
 
@@ -164,8 +166,13 @@ protected:
 
     monkey::Status swapOut();
     monkey::Status sync(tycoon::Page&);
+    
+
+    monkey::Status fetchPageDataVersion(tycoon::Page& page, adl::int64_t* out);
+    monkey::Status updateSharedPage(tycoon::Page& page);
 public:
 
+    const adl::uintptr_t MAINTENANCE_TMP_ADDR = 0x90000000ul;  // todo: really this address?
 
     Tycoon(Genode::Env& env) 
     : 
@@ -201,8 +208,22 @@ public:
 
     monkey::Status checkAvailableMem(adl::size_t* res);
 
+    // For FreeMemoryManager.
+    monkey::Status freePage(adl::uintptr_t addr);
+
     UserAllocator& getUserAllocator() { return this->userAllocator; }
 
+    enum PageAccessRight {
+        READ_ONLY = 1,
+        READ_WRITE = 2
+    };
+    monkey::Status refPage(
+        adl::uintptr_t vaddr, 
+        adl::int64_t accessKey,
+        PageAccessRight accessRight
+    );
+
+    monkey::Status unrefPage(adl::uintptr_t vaddr);
 public:
     friend PageFaultSignalBridge;
     friend tycoon::MaintenanceThread;

@@ -62,6 +62,16 @@ struct Page {
     bool present = false;
     bool writable = false;
 
+
+    // If page not owned by our node, `sharing` is used to indicate
+    // the sharing state.
+    enum class Sharing {
+        NONE,       // not shared.
+        READ_ONLY,  // shared read-only.
+        READ_WRITE  // shared read-write.
+    } sharing = Sharing::NONE;
+
+
     /**
      * Whether once set to `writable` after last sync.
      */
@@ -69,6 +79,10 @@ struct Page {
     
     adl::int64_t mnemosyneId = 0;
     adl::int64_t blockId = 0;
+    adl::int64_t dataVersion = 0;
+
+    adl::int64_t readKey = 0;
+    adl::int64_t writeKey = 0;
 
     Genode::Ram_dataspace_capability buf;
 };

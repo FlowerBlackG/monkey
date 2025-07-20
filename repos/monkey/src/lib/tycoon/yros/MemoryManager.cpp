@@ -44,7 +44,7 @@ void MemoryManager::init(
     systemManagedMemory = 0;
     systemManagedMildMemory = 0;
 
-    FreeMemoryManager::free((adl::uint64_t) addr, size);
+    FreeMemoryManager::free((adl::uint64_t) addr, size, false, true);
     ArenaMemoryManager::init();
 
 }

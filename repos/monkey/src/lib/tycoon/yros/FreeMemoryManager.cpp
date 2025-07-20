@@ -13,7 +13,8 @@
 #include "./FreeMemoryManager.h"
 #include "./MemoryManager.h"
 
-using namespace adl;
+#include <monkey/tycoon/Tycoon.h>
+
 
 namespace yros {
 namespace memory {
@@ -26,6 +27,7 @@ namespace FreeMemoryManager {
     DoubleLinkedTree sizeIdxTree;
     
     adl::uint64_t totalFreeMemory;
+    monkey::Tycoon* tycoon = nullptr;
 }
 
 /* ------------ Free Memory Manager ------------ */
@@ -56,7 +58,7 @@ void adjustPageLinkNodes() {
         && currentPage->prevNode
     ) {
         free(
-            ((uint64_t) nextPage), 
+            ((adl::uint64_t) nextPage), 
             sizeof(PageLinkNode),
             true
         );
@@ -67,7 +69,7 @@ void adjustPageLinkNodes() {
 
     } else if (nextPage->nodeUsed > ALLOC_PAGE_NODE_THREHOLD) {
 
-        uint64_t allocRes = alloc(sizeof(PageLinkNode), true);
+        adl::uint64_t allocRes = alloc(sizeof(PageLinkNode), true);
         
         nextPage = (PageLinkNode*) allocRes;
         nextPage->nextNode = nullptr;
@@ -82,9 +84,9 @@ void adjustPageLinkNodes() {
 }
 
 
-int FreeMemoryManager::free(uint64_t address, uint64_t size, bool dontAdjustPage) {
+int FreeMemoryManager::free(adl::uint64_t address, adl::uint64_t size, bool dontAdjustPage, bool init) {
 
-    if (size == 0) {
+    if (size % 4096 != 0 || size == 0) {
         return 0;
     }
 
@@ -238,11 +240,21 @@ int FreeMemoryManager::free(uint64_t address, uint64_t size, bool dontAdjustPage
     }
     
 
+    // For Monkey Tycoon.
+    if (tycoon != nullptr && !init) {
+        for (adl::size_t off = 0; off < size; off += 4096) {
+            tycoon->freePage(address + off);
+        }
+    }
 
     return 0;
 }
 
-uint64_t FreeMemoryManager::alloc(uint64_t size, bool dontAdjustPage) {
+adl::uint64_t FreeMemoryManager::alloc(adl::uint64_t size, bool dontAdjustPage) {
+
+    if (size % 4096 != 0 || size == 0) {
+        return 0; // Only 4KB aligned size is allowed.
+    }
 
     auto addrIdx =DoubleLinkedTree::NODE_DATA_ADDRESS_IDX;
     auto sizeIdx = DoubleLinkedTree::NODE_DATA_SIZE_IDX;
@@ -313,11 +325,11 @@ uint64_t FreeMemoryManager::alloc(uint64_t size, bool dontAdjustPage) {
 
 }
 
-uint64_t FreeMemoryManager::getTotalFreeMemory() {
+adl::uint64_t FreeMemoryManager::getTotalFreeMemory() {
     return totalFreeMemory;
 }
 
-uint64_t FreeMemoryManager::getMaxAllocatableMemorySize() {
+adl::uint64_t FreeMemoryManager::getMaxAllocatableMemorySize() {
 
     if (sizeIdxTree.root == nullptr) {
         return 0;
@@ -554,7 +566,7 @@ int FreeMemoryManager::DoubleLinkedTree::moveNode(
 
 FreeMemoryManager::DoubleLinkedTreeNode* 
 FreeMemoryManager::DoubleLinkedTree::findNode(
-    uint64_t value, int index, FindNodeStrategy strategy
+    adl::uint64_t value, int index, FindNodeStrategy strategy
 ) {
 
     if (root == nullptr) {

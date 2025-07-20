@@ -1,11 +1,11 @@
 #
-# Monkey Concierge : Remembers where all nodes are.
+# Monkey Lab : For some experimental coding.
 #
-# Created on 2025.1.6 at Minhang, Shanghai
+# Created on 2024.12.25 at Minhang, Shanghai
 # 
 # 
-# gongty  [at] tongji [dot] edu [dot] cn
 # feng.yt [at]  sjtu  [dot] edu [dot] cn
+# gongty  [at] tongji [dot] edu [dot] cn
 # 
 #
 
@@ -23,11 +23,12 @@ import_from_depot [depot_user]/src/[base_src] \
                   [depot_user]/src/nic_router \
                   [depot_user]/src/vfs \
                   [depot_user]/src/vfs_lwip \
-                  [depot_user]/src/vfs_pipe
+                  [depot_user]/src/vfs_pipe \
+                  [depot_user]/src/rtc_drv
 
 
 build {
-    core init timer app/monkey_concierge
+    core init timer monkey_dock app/monkey_lab
 }
 
 
@@ -37,7 +38,7 @@ build {
 
 install_config {
 
-<config verbose="yes" prio_levels="4">
+<config>
     <default-route>
         <any-service> <parent/> <any-child/> </any-service>
     </default-route>
@@ -56,16 +57,14 @@ install_config {
     <default caps="200"/>
 
 
-    <start name="timer" priority="0">
-        
-        <resource name="RAM" quantum="2M"/>
+    <start name="timer">
+        <resource name="RAM" quantum="1M"/>
         <provides> <service name="Timer"/> </provides>
     </start>
 
 
-    <start name="drivers" caps="1200" managing_system="yes" priority="0">
-        
-        <resource name="RAM" quantum="256M"/>
+    <start name="drivers" caps="1000" managing_system="yes">
+        <resource name="RAM" quantum="32M"/>
         <binary name="init"/>
         <route>
             <service name="ROM" label="config"> <parent label="drivers.config"/> </service>
@@ -74,10 +73,17 @@ install_config {
             <any-service> <parent/> </any-service>
         </route>
     </start>
+    
 
-    <start name="nic_router" caps="400" priority="0">
-        
-        <resource name="RAM" quantum="128M"/>
+    <start name="rtc_drv">
+		<resource name="RAM" quantum="8M"/>
+		<provides>
+			<service name="Rtc"/>
+		</provides>
+	</start>
+
+    <start name="nic_router" caps="200">
+        <resource name="RAM" quantum="32M"/>
         <provides>
             <service name="Nic"/>
             <service name="Uplink"/>
@@ -85,7 +91,7 @@ install_config {
         <config verbose_domain_state="yes">
 
 
-            <policy label_prefix="monkey_concierge" domain="downlink"/>
+            <policy label_prefix="monkey_dock" domain="downlink"/>
             <policy label_prefix="drivers" domain="uplink"/>
 
             <domain name="uplink">
@@ -95,7 +101,7 @@ install_config {
                      udp-ports="16384"
                      icmp-ids="16384"/>
 
-				<tcp-forward port="10000" domain="downlink" to="10.0.3.2"/>
+				<tcp-forward port="8888" domain="downlink" to="10.0.3.2"/>
 
             </domain>
 
@@ -117,10 +123,9 @@ install_config {
     </start>
 
 
-
-    <start name="monkey_concierge" caps="2000" priority="-1">
-        
-        <resource name="RAM" quantum="1G"/>
+    <start name="monkey_dock" caps="1000">
+        <resource name="RAM" quantum="16M"/>
+        <provides> <service name="MonkeyDock"/> </provides>
 
         <config>
             <vfs>
@@ -129,60 +134,49 @@ install_config {
                 <dir name="pipe"> <pipe/> </dir>
             </vfs>
             <libc stdout="/dev/log" socket="/socket" pipe="/pipe"/>
-            
-
-            <monkey-concierge>
-            
-                <server>
-                    <port>10000</port>
-                </server>
-
-                <memory-node>
-                    <key>a9f4fb48-0ee5-4196-891d-48a9f0b0b687</key>
-                </memory-node>
-                
-                <memory-node>
-                    <key>41f413a9-2c21-4721-9f0d-d8ee9b4961f1</key>
-                </memory-node>
-                
-
-                <app>
-                    <id>1</id>
-                    <key>f578bd06-6f8e-42b3-8be9-860c7c645549</key>
-                </app>
-
-                <app>
-                    <id>2</id>
-                    <key>8370c1fe-d422-42d9-a261-05aed72313c3</key>
-                </app>
-                
-
-                <app>
-                    <id>3</id>
-                    <key>6ba4d662-fa26-4c45-8627-af6c1328fc12</key>
-                </app>
-                <app>
-                    <id>4</id>
-                    <key>248ed556-d5d9-4488-9b32-bd8110867908</key>
-                </app>
-                <app>
-                    <id>5</id>
-                    <key>c41a230f-f695-41b1-8b02-204da9cf69d8</key>
-                </app>
-                <app>
-                    <id>6</id>
-                    <key>c9ff804a-6228-44da-b9af-d8f7e7fca108</key>
-                </app>
-
-            </monkey-concierge>
-
-
         </config>
 
         <route>
             <service name="Nic"> <child name="nic_router"/> </service>
             <any-service> <parent/> <any-child/> </any-service>
         </route>
+    </start>
+
+
+    <start name="monkey_lab" caps="300">
+        <resource name="RAM" quantum="256M"/>
+
+        <config>
+            <vfs>
+                <dir name="dev"> <log/> <rtc/> </dir>
+                <dir name="pipe"> <pipe/> </dir>
+            </vfs>
+            <libc stdout="/dev/log" pipe="/pipe" rtc="/dev/rtc"/>
+
+            <monkey-lab>
+            
+                <monkey-tycoon>
+                    <concierge>
+                        <ip>10.0.2.2</ip>
+                        <port>5555</port>
+                    </concierge>
+
+                    <app>
+                        <key>f578bd06-6f8e-42b3-8be9-860c7c645549</key>
+                        <id>1</id>  <!-- just a hint. not used by app itself. -->
+                    </app>
+
+                </monkey-tycoon>
+            
+            </monkey-lab>
+
+        </config>
+        
+        <route>
+            <service name="Rtc"> <any-child /> </service>
+            <any-service> <parent/> <any-child/> </any-service>
+        </route>
+
     </start>
 
 
@@ -196,9 +190,8 @@ install_config {
 #
 
 
-build_boot_image { core ld.lib.so init timer monkey_concierge }
+build_boot_image { core ld.lib.so init timer monkey_dock monkey_lab }
 
 append qemu_args " -nographic "
-append_qemu_nic_args "hostfwd=tcp:127.0.0.1:5555-:10000"
 
 run_genode_until forever

@@ -67,6 +67,16 @@ const char* msgTypeToString(MsgType type) {
         case MsgType::FreeBlock:
             return "FreeBlock";
 
+
+        case MsgType::RefBlock:
+            return "RefBlock";
+
+        case MsgType::UnrefBlock:
+            return "UnrefBlock";
+
+        case MsgType::GetBlockDataVersion:
+            return "GetBlockDataVersion";
+
     
         case MsgType::PingPong:
             return "PingPong";

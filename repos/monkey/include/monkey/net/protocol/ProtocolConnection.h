@@ -10,14 +10,14 @@
 
 #pragma once
 
+#include <monkey/net/config.h>
+
 #include <monkey/net/TcpIo.h>
 #include <monkey/net/protocol/defines.h>
 #include <monkey/net/Socket4.h>
 
 #include <netinet/in.h>
 
-
-#define VESPER_PROTOCOL_DEBUG 1
 
 
 /**
@@ -55,7 +55,7 @@
             onSuccess \
         } \
         if (response) { \
-            adl::defaultAllocator.free(response); \
+            this->freeMsg(response); \
             response = nullptr; \
         } \
     } while (0)
@@ -168,12 +168,21 @@ public:
 
 
     /**
-    * The caller is responsible for freeing `msg`
+    * The caller is responsible for freeing `msg` by calling freeMsg.
     * when monkey::Status is SUCCESS.
     *
     * @param type Ensure type. Set to MsgType::None to disable this check.
     */
     virtual Status recvMsg(protocol::Msg** msg, protocol::MsgType type = protocol::MsgType::None);
+    virtual inline void freeMsg(protocol::Msg* msg) {
+        if (msg) {
+            adl::defaultAllocator.free(msg);
+        }
+    }
+
+    virtual inline void freeMsg(protocol::Response* msg) {
+        this->freeMsg((protocol::Msg*) msg);
+    }
 
 
 

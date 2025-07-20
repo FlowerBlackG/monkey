@@ -140,7 +140,7 @@ monkey::Status MemoryLounge::serve() {
         }
 
 
-        adl::defaultAllocator.free(msg);
+        client.freeMsg(msg);
         if (status != Status::SUCCESS)
             break;
     }

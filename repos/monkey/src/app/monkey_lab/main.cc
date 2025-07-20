@@ -22,6 +22,8 @@
 
 #include "./config.h"
 
+#include "./Apps.h"
+
 using namespace Genode;
 using namespace monkey;
 
@@ -30,6 +32,7 @@ struct AppMain {
     Genode::Env& env;
     Genode::Heap heap { env.ram(), env.rm() };
     Tycoon tycoon;
+    Genode::Attached_rom_dataspace configDs { env, "config" };
 
     void initAdlAlloc() {
         adl::defaultAllocator.init({
@@ -47,11 +50,29 @@ struct AppMain {
     }
 
 
-    Status initTycoon() {
-        Genode::Attached_rom_dataspace configDs { env, "config" };
-        auto configRoot = configDs.xml().sub_node("monkey-lab");
-        auto tycoonRoot = configRoot.sub_node("monkey-tycoon");
+    Xml_node configRoot() {
+        return configDs.xml().sub_node("monkey-lab");
+    }
 
+
+    Xml_node tycoonConfigRoot() {
+        return configRoot().sub_node("monkey-tycoon");
+    }
+
+
+    const adl::TString& appKey() {
+        static adl::TString appkey;
+
+        if (appkey.length() == 0) {
+            auto keyNode = tycoonConfigRoot().sub_node("app").sub_node("key");
+            appkey = genodeutils::config::getText(keyNode);
+        }
+
+        return appkey;
+    }
+
+
+    Status initTycoon() {
         monkey::Tycoon::InitParams params;
 
         // determine params.nbuf
@@ -71,17 +92,29 @@ params.nbuf = 1;  // for testing.
             // todo
         }
 
-        tycoon.init(tycoonRoot, params);
+        tycoon.init(tycoonConfigRoot(), params);
 
         return Status::SUCCESS;
+    }
+
+
+    monkey::Status runLabApp() {
+        auto& key = appKey();
+        if (key == "f578bd06-6f8e-42b3-8be9-860c7c645549") {
+            return App1(env, heap, tycoon).run();
+        }
+        else if (key == "8370c1fe-d422-42d9-a261-05aed72313c3") {
+            return App2(env, heap, tycoon).run();
+        }
+        else {
+            return monkey::Status::NOT_FOUND;
+        }
     }
 
     
     AppMain(Genode::Env& env) : env(env), tycoon(env)
     {
         Libc::with_libc([&] () {
-            
-            Genode::log("monkey lab main");
             initAdlAlloc();
 
             Status status = Status::SUCCESS;
@@ -120,22 +153,17 @@ params.nbuf = 1;  // for testing.
                 return;
 #endif
                 tycoon.start(addr, size); // sel4/hw
+                Genode::log("Tycoon started.");
                 adl::size_t tycoonRam = 0;
                 tycoon.checkAvailableMem(&tycoonRam);
                 Genode::log("There are ", tycoonRam, " bytes ram on monkey memory network.");
             } // end of memory probing
 
-            ((char*)0x100000000030)[2] = 'c';
-
-
-            ((char*)0x100002000030)[2] = 'd';
-
-            Genode::log("((char*)0x100000000030)[2]: ", Genode::Hex( ((char*)0x100000000030)[2]));
-            Genode::log("((char*)0x100002000030)[2]: ", Genode::Hex(((char*)0x100002000030)[2]));
+            auto appStatus = runLabApp();
+            
+            Genode::log("App exited with code ", adl::int32_t(appStatus), ", Monkey Lab end.");
 
             tycoon.stop();
-            Genode::log("Monkey Lab end.");
-        
         });
     }
 };

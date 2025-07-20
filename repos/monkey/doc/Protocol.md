@@ -452,11 +452,15 @@ On success, Response shall be like:
 +---------+---------+
 ```
 
+`read key` and `write key` are the same, and both are composed of the memory node
+id and block id within each memory node, memory node id occupies higher 16 bits, and block id occupies
+remaining 48 bits.
+
 `read key` and `write key` should be treated as pure bytes, which means no need to convert endian.
 
 You can ignore `read key` and `write key` if you want to use the page exclusively.
 
-You can deliver `read key` to clients you'd like to have read-obly access to the page, or a `write key` to clients you'd like to have both read and write access.
+You can deliver `read key` to clients you'd like to have read-only access to the page, or a `write key` to clients you'd like to have both read and write access.
 
 `data version` is an 8-byte integer used for syncing this block across multiple clients. You can ignore it if using the block exclusively.
 
@@ -581,7 +585,7 @@ This request comes with no payload.
 
 Response msg is a 64-bit integer indicating the available mem in this node, in bytes.
 
-### 0x3005: Free Block
+### (D) 0x3005: Free Block
 
 From: Protocol Version 1
 

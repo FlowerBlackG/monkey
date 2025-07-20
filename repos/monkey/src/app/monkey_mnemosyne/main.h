@@ -27,15 +27,18 @@
 
 #include "./Block.h"
 
+
+#include "./GlobalMemoryManager.h"
+
+
 struct MnemosyneMain {
 
     Genode::Env& env;
     Genode::Heap heap { env.ram(), env.rm() };
     adl::int64_t nodeId = 0;
 
-    // block id -> block struct
-    // TODO: consider using wayland-style linked list so we can find apps' block faster by app id.
-    adl::HashMap<adl::int64_t, Block> memoryBlocks;
+
+    GlobalMemoryManager globalMemoryManager { env };
 
     adl::HashMap<adl::int64_t, adl::ByteArray> appKeys;
 
@@ -64,17 +67,6 @@ struct MnemosyneMain {
 
     MnemosyneMain(Genode::Env&);
 
-    /**
-     * For app lounge.
-     * @param size block size
-     * @param record `true` then it would be recorded by mnemosyne main.
-     * @return if failed, Block's size would be set to 0.
-     */
-    Block allocMemoryBlock(adl::size_t size, adl::int64_t owner, bool record = true);
-    Genode::Mutex memoryBlockAllocationLock;
-    adl::int64_t nextMemoryBlockId = 5000000001;
-
-    void freeMemoryBlock(Block&);
 
     monkey::Status loadConfig();
     monkey::Status init();

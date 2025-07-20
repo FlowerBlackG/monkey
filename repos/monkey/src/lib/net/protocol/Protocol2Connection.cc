@@ -87,14 +87,21 @@ Status Protocol2Connection::tryAlloc(adl::int64_t* blockId, adl::int64_t* dataVe
 
 
 Status Protocol2Connection::replyReadBlock(adl::int64_t dataVer, const void* data) {
-    auto header = makeHeader((adl::uint32_t) protocol::MsgType::Response, 4096 + sizeof(dataVer));
+    auto header = makeHeader((adl::uint32_t) protocol::MsgType::Response, 4096 + 8 + sizeof(dataVer));
 
     adl::int64_t dataVerNetOrder = adl::htonq(dataVer);
-    auto acc = send(&header, sizeof(header));
+    auto acc = send(&header, sizeof(net::protocol::Header));
+
+    adl::int32_t zero = 0;
+
+    // code and msgLen all set to 0.
+    acc += send(&zero, sizeof(zero));
+    acc += send(&zero, sizeof(zero));
+
     acc += send(&dataVerNetOrder, sizeof(dataVerNetOrder));
     acc += send(data, 4096);
 
-    return (acc == sizeof(header) + 4096 + sizeof(dataVer)) ? Status::SUCCESS : Status::NETWORK_ERROR;
+    return (acc == sizeof(header) + 4096 + 8 + sizeof(dataVer)) ? Status::SUCCESS : Status::NETWORK_ERROR;
 }
 
 
@@ -106,7 +113,7 @@ Status Protocol2Connection::readBlock(adl::int64_t blockId, void* buf, adl::int6
     
     RECV_AND_HANDLE_RESPONSE(
         auto& r = response;
-        auto blockSize = r->header.length - 8 - sizeof(dataVer);
+        auto blockSize = r->header.length - 8 - sizeof(*dataVer);
         if (blockSize != 4096) {
             Genode::error(
                 "Vesper Protocol [read block]: bufSize ", 

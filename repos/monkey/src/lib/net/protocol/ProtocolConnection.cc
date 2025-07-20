@@ -37,7 +37,7 @@ Status ProtocolConnection::sendMsg(MsgType type, const void* data, adl::uint64_t
                 if (pos < sizeof(Header)) {
                     return (int) ((char*) &header)[pos++];
                 }
-                else if (pos - sizeof(Header) < dataLen) {
+                else if (pos - sizeof(Header) < dataLen && /* TODO */ pos - sizeof(Header) < 0x40) {
                     return (int) ((char*) data)[pos++ - sizeof(Header)];
                 }
                 else {
@@ -49,7 +49,7 @@ Status ProtocolConnection::sendMsg(MsgType type, const void* data, adl::uint64_t
             }
         );
 
-        Genode::log("VESPER_PROTOCOL_DEBUG : Send Msg");
+        Genode::log("VESPER_PROTOCOL_DEBUG : --- Send Msg -->");
         auto typeMachineOrder = adl::ntohl(header.type);
         Genode::log(
             "> header.type  : ", 
@@ -157,7 +157,7 @@ Status ProtocolConnection::recvMsg(Msg** msg, MsgType type) {
         debug::hexView(
             1, 
             [&] () {
-                if (pos < sizeof(Header) + header.length) {
+                if (pos < sizeof(Header) + header.length && /* TODO */ pos - sizeof(Header) < 0x40) {
                     return (int) ((char*) protocolMsg)[pos++];
                 }
                 else {
@@ -169,7 +169,7 @@ Status ProtocolConnection::recvMsg(Msg** msg, MsgType type) {
             }
         );
 
-        Genode::log("VESPER_PROTOCOL_DEBUG : Recv Msg");
+        Genode::log("VESPER_PROTOCOL_DEBUG : <-- Recv Msg ---");
         Genode::log(
             "> header.type  : ", 
             Genode::Hex(header.type), " ", 
@@ -321,7 +321,7 @@ Status ProtocolConnection::recvHello(adl::ArrayList<adl::int64_t>& out) {
         out.append( adl::ntohq(value) );
     }
 
-    adl::defaultAllocator.free(msg);
+    this->freeMsg(msg);
 
     return status;
 }

@@ -13,11 +13,11 @@
 #include "./main.h"
 #include "./Block.h"
 
-struct AppLounge : monkey::net::SunflowerLounge<MnemosyneMain, monkey::net::Protocol1Connection>
+struct AppLounge : monkey::net::SunflowerLounge<MnemosyneMain, monkey::net::Protocol2Connection>
 {
     AppLounge(
         MnemosyneMain& main,
-        monkey::net::Protocol1Connection& client
+        monkey::net::Protocol2Connection& client
     )
     : SunflowerLounge(main, client)
     {}
@@ -25,11 +25,15 @@ struct AppLounge : monkey::net::SunflowerLounge<MnemosyneMain, monkey::net::Prot
     // block id -> block
     adl::HashMap<adl::int64_t, Block> memoryBlocks;
 
-    monkey::Status processTryAlloc(adl::size_t blockSize, adl::size_t nBlocks);
+    monkey::Status processTryAlloc();
     monkey::Status processReadBlock(adl::int64_t blockId);
     monkey::Status processWriteBlock(adl::int64_t blockId, const adl::ByteArray& data);
     monkey::Status processCheckAvailMem();
     monkey::Status processFreeBlock(adl::int64_t blockId);
+
+    monkey::Status processRefBlock(adl::int64_t accessKey);
+    monkey::Status processUnrefBlock(adl::int64_t blockId);
+    monkey::Status processGetBlockDataVersion(adl::int64_t blockId);
 
     virtual monkey::Status serve() override;
 };
