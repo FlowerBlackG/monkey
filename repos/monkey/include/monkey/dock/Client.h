@@ -177,7 +177,14 @@ public:
         }
 
         buffer.vaddr = vaddr;
-        env.rm().attach_at(buffer.ds, vaddr);
+        env.rm().attach(buffer.ds, {
+            .size       = { },
+            .offset     = { },
+            .use_at     = true,
+            .at         = vaddr,
+            .executable = false,
+            .writeable  = true
+        });
         buffer.mapped = true;
         return Status::SUCCESS;
     }

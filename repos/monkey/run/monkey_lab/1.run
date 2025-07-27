@@ -23,8 +23,7 @@ import_from_depot [depot_user]/src/[base_src] \
                   [depot_user]/src/nic_router \
                   [depot_user]/src/vfs \
                   [depot_user]/src/vfs_lwip \
-                  [depot_user]/src/vfs_pipe \
-                  [depot_user]/src/rtc_drv
+                  [depot_user]/src/vfs_pipe 
 
 
 build {
@@ -75,12 +74,12 @@ install_config {
     </start>
     
 
-    <start name="rtc_drv">
+    <!--start name="rtc_drv">
 		<resource name="RAM" quantum="8M"/>
 		<provides>
 			<service name="Rtc"/>
 		</provides>
-	</start>
+	</start-->
 
     <start name="nic_router" caps="200">
         <resource name="RAM" quantum="32M"/>
@@ -148,10 +147,11 @@ install_config {
 
         <config>
             <vfs>
-                <dir name="dev"> <log/> <rtc/> </dir>
+                <dir name="dev"> <log/> <!--rtc /--> </dir>
                 <dir name="pipe"> <pipe/> </dir>
             </vfs>
-            <libc stdout="/dev/log" pipe="/pipe" rtc="/dev/rtc"/>
+            <!--libc stdout="/dev/log" pipe="/pipe" rtc="/dev/rtc"/-->
+            <libc stdout="/dev/log" pipe="/pipe" />
 
             <monkey-lab>
             
@@ -173,7 +173,8 @@ install_config {
         </config>
         
         <route>
-            <service name="Rtc"> <any-child /> </service>
+            <!--service name="Rtc"> <any-child /> </service-->
+            <service name="MonkeyDock"> <any-child /> </service>
             <any-service> <parent/> <any-child/> </any-service>
         </route>
 
@@ -190,7 +191,7 @@ install_config {
 #
 
 
-build_boot_image { core ld.lib.so init timer monkey_dock monkey_lab }
+build_boot_image [build_artifacts]
 
 append qemu_args " -nographic "
 

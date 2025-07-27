@@ -120,15 +120,15 @@ protected:
     Genode::Env& env;
 
 
-    DockSessionComponent* _create_session(const char*) override
+    Create_result _create_session(const char*) override
     {
         Genode::log("Creating session..");
         
-        return new (md_alloc()) DockSessionComponent(env);
+        return *new (md_alloc()) DockSessionComponent(env);
     }
 
 
-    virtual void _destroy_session(DockSessionComponent* session) override
+    virtual void _destroy_session(DockSessionComponent& session) override
     {
         Genode::Root_component<DockSessionComponent>::_destroy_session(session);
     }

@@ -10,6 +10,11 @@
 
 #include <monkey/tycoon/Tycoon.h>
 
+#include <base/ram_allocator.h>
+#include <base/env.h>
+#include <region_map/client.h>
+
+
 #include "./yros/MemoryManager.h"
 #include "./yros/KernelMemoryAllocator.h"
 #include "./yros/FreeMemoryManager.h"
@@ -48,7 +53,7 @@ Tycoon::~Tycoon() {
     stop();
 
     for (auto& it : buffers) {
-        env.pd().free(it);
+        env.pd().free_ram(it);
     }
     buffers.clear();
 }
@@ -108,11 +113,24 @@ monkey::Status Tycoon::init(const Genode::Xml_node& xml, const InitParams& param
     }
 
     for (adl::size_t i = 0; i < params.nbuf; i++) {
-        auto ds = env.pd().alloc(4096);
-        buffers.append(ds);
+        env.pd().alloc_ram(4096).with_result(
+            [&] (Genode::Ram_dataspace_capability ds) {
+                if (!ds.valid()) {
+                    Genode::error("Tycoon: Failed to allocate RAM dataspace.");
+                    status = Status::OUT_OF_RESOURCE;
+                }
+
+                buffers.append(ds);
+                status = Status::SUCCESS;
+            },
+            [&] (Genode::Alloc_error) {
+                Genode::error("Tycoon: Failed to allocate RAM dataspace.");
+                status = Status::OUT_OF_RESOURCE;
+            }
+        );
     }
 
-    return Status::SUCCESS;
+    return status;
 }
 
 
@@ -228,27 +246,27 @@ void Tycoon::handlePageFaultSignal() {
         return;
     }
 
-    Genode::Region_map& rm = env.rm();
-    Genode::Region_map::State state = rm.state();
-    auto faultAddr = state.addr;
-    auto pageAddr = state.addr & ~0xffful;
+    Genode::Region_map_client rm { env.pd().address_space() };
+    const Genode::Region_map::Fault::Type faultType = rm.fault().type;
+    const auto faultAddr = rm.fault().addr;
+    auto pageAddr = faultAddr & ~0xffful;
     if (faultAddr < memSpace.vaddr || faultAddr >= memSpace.vaddr + memSpace.size) {
         // address not managed by Tycoon.
         return;
     }
 
-    Genode::log("====== Tycoon: Page fault on ", Genode::Hex(state.addr), " caught. ======");
+    Genode::log("====== Tycoon: Page fault on ", Genode::Hex(faultAddr), " caught. ======");
     Genode::log(
         "> Type: ",
         (
-            state.type == Genode::Region_map::State::READ_FAULT  ? "READ_FAULT"  :
-            state.type == Genode::Region_map::State::WRITE_FAULT ? "WRITE_FAULT" :
-            state.type == Genode::Region_map::State::EXEC_FAULT  ? "EXEC_FAULT"  : "READY"
+            faultType == Genode::Region_map::Fault::Type::READ  ? "READ_FAULT"  :
+            faultType == Genode::Region_map::Fault::Type::WRITE ? "WRITE_FAULT" :
+            faultType == Genode::Region_map::Fault::Type::EXEC  ? "EXEC_FAULT"  : "READY"
         ),
         "> Page Addr: ", Genode::Hex(pageAddr)
     );
 
-    if (state.type == Genode::Region_map::State::EXEC_FAULT) {
+    if (faultType == Genode::Region_map::Fault::Type::EXEC) {
         Genode::error("EXEC_FAULT not supported by Tycoon.");
         return;
     }
@@ -262,13 +280,27 @@ void Tycoon::handlePageFaultSignal() {
         auto& page = pages[pageAddr];
         if (page.present && page.mapped) {
             env.rm().detach(page.addr);
-            env.rm().attach_at(page.buf, page.addr);
+            env.rm().attach(page.buf, {
+                .size       = { },
+                .offset     = { },
+                .use_at     = true,
+                .at         = page.addr,
+                .executable = false,
+                .writeable  = page.writable
+            });
             page.writable = true;
             page.dirty = true;
             return;
         }
         else if (page.present) {
-            env.rm().attach_at(page.buf, page.addr);
+            env.rm().attach(page.buf, {
+                .size       = { },
+                .offset     = { },
+                .use_at     = true,
+                .at         = page.addr,
+                .executable = false,
+                .writeable  = page.writable
+            });
             page.writable = page.dirty = page.mapped = true;
             return;
         }
@@ -312,15 +344,14 @@ void Tycoon::handlePageFaultSignal() {
     page.present = true;
 
     if (!pageRegistered) {
-        env.rm().attach(
-            page.buf,
-            4096,
-            0,
-            true,
-            page.addr,
-            false,
-            page.writable
-        );
+        env.rm().attach(page.buf, {
+            .size = 4096,
+            .offset = 0,
+            .use_at = true,
+            .at = page.addr,
+            .executable = false,
+            .writeable = page.writable
+        });
         return;
     }
     
@@ -336,15 +367,14 @@ void Tycoon::handlePageFaultSignal() {
         return;
     }
     
-    env.rm().attach(
-        page.buf,
-        4096,
-        0,
-        true,
-        page.addr,
-        false,
-        page.writable
-    );
+    env.rm().attach(page.buf, {
+        .size = 4096,
+        .offset = 0,
+        .use_at = true,
+        .at = page.addr,
+        .executable = false,
+        .writeable = page.writable
+    });
 }
 
 
@@ -503,7 +533,14 @@ monkey::Status Tycoon::sync(tycoon::Page& page) {
     }
 
     if (!page.mapped) {
-        env.rm().attach_at(page.buf, page.addr);
+        env.rm().attach(page.buf, {
+            .size       = { },
+            .offset     = { },
+            .use_at     = true,
+            .at         = page.addr,
+            .executable = false,
+            .writeable  = page.writable
+        });
     }
 
     status = connections.mnemosynes[page.mnemosyneId]->writeBlock(
@@ -549,7 +586,14 @@ monkey::Status Tycoon::fetchPageDataVersion(tycoon::Page& page, adl::int64_t* ou
 
     adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
     if (!page.mapped) {
-        env.rm().attach_at(page.buf, page.addr);
+        env.rm().attach(page.buf, {
+            .size       = { },
+            .offset     = { },
+            .use_at     = true,
+            .at         = page.addr,
+            .executable = false,
+            .writeable  = page.writable
+        });
     }
 
     adl::int64_t dataVer;
@@ -678,7 +722,14 @@ monkey::Status Tycoon::loadPage(tycoon::Page& page) {
 
     adl::uintptr_t tmpAddr = MAINTENANCE_TMP_ADDR;
 
-    env.rm().attach_at(page.buf, tmpAddr);
+    env.rm().attach(page.buf, {
+        .size       = { },
+        .offset     = { },
+        .use_at     = true,
+        .at         = tmpAddr,
+        .executable = false,
+        .writeable  = true
+    });
     status = connections.mnemosynes[page.mnemosyneId]->readBlock(
         page.blockId,
         (void*) tmpAddr,

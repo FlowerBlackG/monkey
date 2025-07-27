@@ -99,26 +99,44 @@ Status getMemoryMap(
 
     while (curr < until) {
         i++;
-        try {
-            env.rm().attach_at(dynamicProber, curr);
-            env.rm().detach(curr);
-            freeSuccessNum++;
-            ocpSuccessNum = 0;
-            addRecord(curr, proberSize, MemoryMapEntry::Type::FREE);
-            Genode::log("addRecord: ", curr, " - ", curr + proberSize, " FREE");
-        } catch (...) {
-            freeSuccessNum = 0;
-            if (ocpSuccessNum >= 3 || proberSize == PROBE_SIZE_MIN) {
-                ocpSuccessNum++;
-                addRecord(curr, proberSize, MemoryMapEntry::Type::OCCUPIED);
-                Genode::log("addRecord: ", curr, " - ", curr + proberSize, " OCCUPIED");
-            } else {
-                proberSize = PROBE_SIZE_MIN; // vaddr occupied.
-                env.ram().free(dynamicProber);
-                dynamicProber = env.ram().alloc(proberSize);
-                Genode::log("Prober down to ", proberSize);
-                continue;
+        
+
+        bool ignoreThisRound = false;
+        env.rm().attach(dynamicProber, {
+            .size       = { },
+            .offset     = { },
+            .use_at     = true,
+            .at         = curr,
+            .executable = false,
+            .writeable  = false
+        }).with_result(
+            [&] (Genode::Env::Local_rm::Attachment& a) {
+                
+                env.rm().detach(curr);
+                freeSuccessNum++;
+                ocpSuccessNum = 0;
+                addRecord(curr, proberSize, MemoryMapEntry::Type::FREE);
+                Genode::log("addRecord: ", curr, " - ", curr + proberSize, " FREE");
+
+            },
+            [&] (Genode::Env::Local_rm::Error) {
+                freeSuccessNum = 0;
+                if (ocpSuccessNum >= 3 || proberSize == PROBE_SIZE_MIN) {
+                    ocpSuccessNum++;
+                    addRecord(curr, proberSize, MemoryMapEntry::Type::OCCUPIED);
+                    Genode::log("addRecord: ", curr, " - ", curr + proberSize, " OCCUPIED");
+                } else {
+                    proberSize = PROBE_SIZE_MIN; // vaddr occupied.
+                    env.ram().free(dynamicProber);
+                    dynamicProber = env.ram().alloc(proberSize);
+                    Genode::log("Prober down to ", proberSize);
+                    ignoreThisRound = true;
+                }
             }
+        );
+
+        if (ignoreThisRound) {
+            continue;
         }
 
         curr += proberSize;

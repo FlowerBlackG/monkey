@@ -92,9 +92,7 @@ params.nbuf = 1;  // for testing.
             // todo
         }
 
-        tycoon.init(tycoonConfigRoot(), params);
-
-        return Status::SUCCESS;
+        return tycoon.init(tycoonConfigRoot(), params);
     }
 
 
@@ -132,7 +130,7 @@ params.nbuf = 1;  // for testing.
             }
 
             // probe vaddr for Tycoon
-            {
+            do {
                 adl::uintptr_t addr = 0;
                 adl::size_t size = 0;
 
@@ -152,12 +150,22 @@ params.nbuf = 1;  // for testing.
                 Genode::error("Unknown kernel\n");
                 return;
 #endif
-                tycoon.start(addr, size); // sel4/hw
+                status = tycoon.start(addr, size); // sel4/hw
+                if (status != monkey::Status::SUCCESS) {
+                    break;
+                }
+
                 Genode::log("Tycoon started.");
                 adl::size_t tycoonRam = 0;
                 tycoon.checkAvailableMem(&tycoonRam);
                 Genode::log("There are ", tycoonRam, " bytes ram on monkey memory network.");
-            } // end of memory probing
+            } while (0); // end of memory probing
+
+            if (status != monkey::Status::SUCCESS) {
+                Genode::error("Tycoon start failed with status ", adl::int32_t(status));
+                tycoon.stop();
+                return;
+            }
 
             auto appStatus = runLabApp();
             

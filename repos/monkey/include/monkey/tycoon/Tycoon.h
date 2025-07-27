@@ -21,6 +21,8 @@
 #include <monkey/genodeutils/config.h>
 #include <monkey/dock/Connection.h>
 
+#include <region_map/client.h>
+
 #include <monkey/tycoon/MaintenanceThread.h>
 
 #include <adl/recursive_mutex>
@@ -75,7 +77,8 @@ protected:
         tycoon(tycoon),
         _handler(*this, *this, &monkey::Tycoon::PageFaultSignalBridge::handle)
         {
-            env.rm().fault_handler(_handler);
+            Genode::Region_map_client rm { env.pd().address_space() };
+            rm.fault_handler(_handler);
         }
     
     } pageFaultSignalBridge;
