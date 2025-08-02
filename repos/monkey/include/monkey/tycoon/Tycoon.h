@@ -98,6 +98,7 @@ protected:
     } config;
 
     Genode::Env& env;
+    Genode::Region_map_client regionMapClient { env.pd().address_space() };
 
     struct {
         adl::uintptr_t vaddr;

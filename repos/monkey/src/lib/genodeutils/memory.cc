@@ -13,6 +13,8 @@
 #include <base/env.h>
 #include <monkey/genodeutils/memory.h>
 
+#include <region_map/client.h>
+
 namespace monkey::genodeutils {
 
 Status getMemoryMap(
@@ -97,12 +99,15 @@ Status getMemoryMap(
     int ocpSuccessNum = 0;
     int i = 0;
 
+    Genode::Region_map_client regionMapClient { env.pd().address_space() };
+
+
     while (curr < until) {
         i++;
         
 
         bool ignoreThisRound = false;
-        env.rm().attach(dynamicProber, {
+        regionMapClient.attach(dynamicProber, {
             .size       = { },
             .offset     = { },
             .use_at     = true,
@@ -110,16 +115,16 @@ Status getMemoryMap(
             .executable = false,
             .writeable  = false
         }).with_result(
-            [&] (Genode::Env::Local_rm::Attachment& a) {
+            [&] (const Genode::Region_map::Range&) {
                 
-                env.rm().detach(curr);
+                regionMapClient.detach(curr);
                 freeSuccessNum++;
                 ocpSuccessNum = 0;
                 addRecord(curr, proberSize, MemoryMapEntry::Type::FREE);
                 Genode::log("addRecord: ", curr, " - ", curr + proberSize, " FREE");
 
             },
-            [&] (Genode::Env::Local_rm::Error) {
+            [&] (const Genode::Region_map::Attach_error&) {
                 freeSuccessNum = 0;
                 if (ocpSuccessNum >= 3 || proberSize == PROBE_SIZE_MIN) {
                     ocpSuccessNum++;

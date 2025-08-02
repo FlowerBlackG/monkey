@@ -42,7 +42,7 @@ inline monkey::Status App1::run() {
     char c = 'a';
 
     while (true) {
-        ((char*)0x100000000000)[2] = c;
+        ((char*)0x300000000)[2] = c;
         char s[2] = "";
         s[0] = c;
 

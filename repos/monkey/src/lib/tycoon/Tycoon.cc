@@ -246,9 +246,8 @@ void Tycoon::handlePageFaultSignal() {
         return;
     }
 
-    Genode::Region_map_client rm { env.pd().address_space() };
-    const Genode::Region_map::Fault::Type faultType = rm.fault().type;
-    const auto faultAddr = rm.fault().addr;
+    const Genode::Region_map::Fault::Type faultType = regionMapClient.fault().type;
+    const auto faultAddr = regionMapClient.fault().addr;
     auto pageAddr = faultAddr & ~0xffful;
     if (faultAddr < memSpace.vaddr || faultAddr >= memSpace.vaddr + memSpace.size) {
         // address not managed by Tycoon.
@@ -279,8 +278,8 @@ void Tycoon::handlePageFaultSignal() {
     if (pageRegistered) {
         auto& page = pages[pageAddr];
         if (page.present && page.mapped) {
-            env.rm().detach(page.addr);
-            env.rm().attach(page.buf, {
+            regionMapClient.detach(page.addr);
+            regionMapClient.attach(page.buf, {
                 .size       = { },
                 .offset     = { },
                 .use_at     = true,
@@ -293,7 +292,7 @@ void Tycoon::handlePageFaultSignal() {
             return;
         }
         else if (page.present) {
-            env.rm().attach(page.buf, {
+            regionMapClient.attach(page.buf, {
                 .size       = { },
                 .offset     = { },
                 .use_at     = true,
@@ -344,7 +343,7 @@ void Tycoon::handlePageFaultSignal() {
     page.present = true;
 
     if (!pageRegistered) {
-        env.rm().attach(page.buf, {
+        regionMapClient.attach(page.buf, {
             .size = 4096,
             .offset = 0,
             .use_at = true,
@@ -367,7 +366,7 @@ void Tycoon::handlePageFaultSignal() {
         return;
     }
     
-    env.rm().attach(page.buf, {
+    regionMapClient.attach(page.buf, {
         .size = 4096,
         .offset = 0,
         .use_at = true,
@@ -509,7 +508,7 @@ monkey::Status Tycoon::swapOut() {
     }
 
     if (best->mapped) {
-        env.rm().detach(best->addr);
+        regionMapClient.detach(best->addr);
         best->mapped = false;
     }
 
@@ -533,7 +532,7 @@ monkey::Status Tycoon::sync(tycoon::Page& page) {
     }
 
     if (!page.mapped) {
-        env.rm().attach(page.buf, {
+        regionMapClient.attach(page.buf, {
             .size       = { },
             .offset     = { },
             .use_at     = true,
@@ -550,7 +549,7 @@ monkey::Status Tycoon::sync(tycoon::Page& page) {
     );
 
     if (!page.mapped) {
-        env.rm().detach(page.addr);
+        regionMapClient.detach(page.addr);
     }
 
     if (status != Status::SUCCESS) {
@@ -586,7 +585,7 @@ monkey::Status Tycoon::fetchPageDataVersion(tycoon::Page& page, adl::int64_t* ou
 
     adl::recursive_mutex::guard _g {this->pageMaintenanceLock};
     if (!page.mapped) {
-        env.rm().attach(page.buf, {
+        regionMapClient.attach(page.buf, {
             .size       = { },
             .offset     = { },
             .use_at     = true,
@@ -688,7 +687,7 @@ monkey::Status Tycoon::unrefPage(adl::uintptr_t vaddr) {
     }
 
     if (page.mapped) {
-        env.rm().detach(vaddr);
+        regionMapClient.detach(vaddr);
         page.mapped = false;
     }
 
@@ -722,7 +721,7 @@ monkey::Status Tycoon::loadPage(tycoon::Page& page) {
 
     adl::uintptr_t tmpAddr = MAINTENANCE_TMP_ADDR;
 
-    env.rm().attach(page.buf, {
+    regionMapClient.attach(page.buf, {
         .size       = { },
         .offset     = { },
         .use_at     = true,
@@ -738,11 +737,11 @@ monkey::Status Tycoon::loadPage(tycoon::Page& page) {
 
     if (status != Status::SUCCESS) {
         Genode::error("Something went wrong. 5c9c81ec-0c49-40df-8f34-332a5b5f43a7");
-        env.rm().detach(tmpAddr);
+        regionMapClient.detach(tmpAddr);
         return status;
     }
 
-    env.rm().detach(tmpAddr);
+    regionMapClient.detach(tmpAddr);
     
     return Status::SUCCESS;
 }
