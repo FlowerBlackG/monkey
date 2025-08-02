@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <region_map/client.h>
 #include <adl/sys/types.h>
 #include <base/rpc_client.h>
 #include <base/log.h>
@@ -24,6 +25,8 @@ struct Client : Genode::Rpc_client<Session>
 protected:
     Genode::Env& env;
     Genode::Heap heap { env.ram(), env.rm() };
+
+    Genode::Region_map_client regionMapClient { env.pd().address_space() };
 
     struct {
         Genode::Ram_dataspace_capability ds;
@@ -62,7 +65,7 @@ public:
 
     ~Client() {
         if (buffer.mapped) {
-            env.rm().detach(buffer.vaddr);
+            regionMapClient.detach(buffer.vaddr);
             buffer.mapped = false;
         }
     }
@@ -163,8 +166,8 @@ public:
     }
 
 
-    inline monkey::Status mapBuffer(adl::uintptr_t vaddr, adl::size_t size) {
-        if (size < buffer.size) {
+    inline monkey::Status mapBuffer(adl::size_t size) {  // TODO: maybe remove this method, merge it into makeBuffer?
+        if (size < buffer.size) {  // TODO: seems buggy.
             return Status::INVALID_PARAMETERS;
         }
         else if (size > buffer.size) {
@@ -172,21 +175,34 @@ public:
         }
 
         if (buffer.mapped) {
-            env.rm().detach(buffer.vaddr);
+            regionMapClient.detach(buffer.vaddr);
             buffer.mapped = false;
         }
 
-        buffer.vaddr = vaddr;
-        env.rm().attach(buffer.ds, {
+
+        Status status = Status::SUCCESS;
+
+        regionMapClient.attach(buffer.ds, {
             .size       = { },
             .offset     = { },
-            .use_at     = true,
-            .at         = vaddr,
+            .use_at     = false,
+            .at         = { },
             .executable = false,
             .writeable  = true
-        });
-        buffer.mapped = true;
-        return Status::SUCCESS;
+        }).with_result(
+            [&] (const Genode::Region_map::Range& range) {
+                buffer.mapped = true;
+                buffer.vaddr = range.start;
+                status = Status::SUCCESS;
+            }, 
+            [&] (const Genode::Region_map::Attach_error& err) {
+                Genode::error("Failed to map buffer. Error code is: ", int(err));
+                status = Status::FAILED;
+            }
+        );
+
+
+        return status;
     }
 
 

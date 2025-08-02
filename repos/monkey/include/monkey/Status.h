@@ -20,7 +20,8 @@ enum class Status : adl::int32_t {
     PROTOCOL_ERROR,
     INVALID_PARAMETERS,
     NOT_FOUND,
-    NOT_INITIALIZED
+    NOT_INITIALIZED,
+    FAILED
 };
 
 }

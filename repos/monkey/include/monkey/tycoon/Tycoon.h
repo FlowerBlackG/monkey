@@ -187,7 +187,7 @@ public:
     {
         dock.makeBuffer(2);
         dock.getBuffer();
-        dock.mapBuffer(0x170000000ul, 8192);  // todo: really this addr?
+        dock.mapBuffer(8192);
 
         connections.concierge.dock = &dock;
     }
