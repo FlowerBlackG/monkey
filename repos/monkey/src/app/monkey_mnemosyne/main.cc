@@ -146,7 +146,7 @@ Status MnemosyneMain::init() {
 }
 
 
-Status MnemosyneMain::clockIn() {
+Status MnemosyneMain::clockIn() {  // register self to monkey concierge.
     Genode::log("Trying to clock in.");
 
     net::protocol::Response* response = nullptr;
